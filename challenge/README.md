@@ -7,31 +7,33 @@ We're looking for communities, companies and coders to participate in implementi
 We'll be using the new environmentally-extended input-output model called 
 <a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?Lab=NRMRL&dirEntryId=336332" target="_blank">USEEIO</a> developed by the <a href="https://www.epa.gov" target="_parent">US Environmental Protection Agency (EPA)</a>. 
 -->
-We're combining national and state-level economic data, community resources and planning input from local communities to customize new environmental indicator models to meet community needs. Check out the [Input-Output Starter Widgets](https://modelearth.github.io/eeio/charts/) being developed.  
+We're combining national and state-level economic data, community resources and planning input from local communities to customize new environmental indicator models to meet&nbsp;community&nbsp;needs.<br>
+View [Industry Evaluator](../info/) and [Embeddable IO Charts](https://modelearth.github.io/io/charts/) being developed.  
 
 
-<h3>Join our Code for America Web Challenge - August to October 25, 2020</h3> 
+<h3>Join our Community Web Challenge - August&nbsp;to&nbsp;October&nbsp;25,&nbsp;2020</h3> 
 
-Form a team with your organization or join an existing team for our 2020 virtual event presented by the U.S. EPA in partnership with the Georgia Department of Economic Development and <a href="https://www.codeforamerica.org/" target="_parent">Code for America</a>. 
+Form a team with your organization or join an existing team for our 2020 virtual event presented by the U.S. EPA in partnership with the Georgia Department of Economic Development and <a href="https://www.codeforamerica.org/" target="_parent">Code for America</a> You can compete from anywhere in the world!  Possible projects include updates to Wazimap Census Reporter which is used in Africa and India.  
+<a href="../" style="white-space: nowrap;">Learn more about projects</a>.  
 
-<h3>$10,000 in Challenge Awards</h3>
-
-Multiple awards are being funded by the US EPA.  
-You are welcome to participate from any location in the world.  
+<h3>$10,000 in Challenge Awards</h3> 
 
 <a href="registration/">Register to participate</a>  
 
 <b>August and September - Team Formation</b>  
 
-<b>Monday, September 21 - <a href="https://nationaltoday.com/national-civic-day-hacking/">National Day of Civic Hacking</a></b>   
+<b>Monday, September 21 - <a href="https://nationaltoday.com/national-civic-day-hacking/" target="national">National Day of Civic Hacking</a></b>   
 
 <b>Saturday, October 17 - 11 AM to Noon - Virtual Progress Updates on Zoom</b>   
 
-<b>Saturday, October 24 - 11 AM to Noon - Final Round, Integrations - Zoom and Slack Video</b> 
+<b>Saturday, October 24 - 11 AM to Noon - Final Round, Integrations</b> 
 
 <b>Sunday, October 25 - 2 PM to 4 PM - Zoom Presentations and Awards</b>  
 
-The Code for America Day of Civic Coding on Sept 12 will focus on integration with <span style="white-space: nowrap;"><a href="https://discourse.codeforamerica.org/t/index-of-covid-19-projects-in-the-network/715">COVID-19 project frameworks</a>.</span> 
+<!--
+During the National Day of Civic Hacking on Sept 21, teams will focus on integration with <span style="white-space: nowrap;"><a href="https://discourse.codeforamerica.org/t/index-of-covid-19-projects-in-the-network/715">COVID-19 project frameworks</a>.</span> 
+-->
+
 <!--During the Sept 12th Zoom call, we'll present info about the Sustainable Communities Web Challenge. Some teams may opt to start building upon the EPA's industry input-output models and maps at that time.  -->
 
 
@@ -49,8 +51,14 @@ for ways communities can use data and planning to be more resilient as they work
 A panel of judges will use Slack video to deliberate while using a Google Form for calculating scores for the Oct 25 awards.<br><br>
 -->
 
-Visit <a target="_parent" href="https://model.earth/community/">model.earth/community</a> for more details.  
+
+
+<!--
+Get an early start by competing in the DataBricks Hackathon
+
+https://databricks.com/blog/2020/04/22/announcing-spark-ai-summit-hackathon-for-social-good.html?utm_source=databricks&utm_medium=home&utm_campaign=undefined&utm_content=undefined&utm_offer=undefined&utm_keyword=undefined&
+-->
 
 ---
 <a href="registration/">Register to participate</a> | 
-<a href="https://model.georgia.org/" target="_parent">Opportunities for Georgia Communities</a>
+<a href="../">More details</a>  

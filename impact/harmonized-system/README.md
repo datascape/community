@@ -1,7 +1,7 @@
 # Harmonized System (HS) Codes
 
 International Harmonized System (HS) Codes reside in the [impact mockup](../) - Categories are visible when clicking "Lookup" in the upper left only when viewing on localhost. 
-([Localhost setup](../../samples/markdown/)) 
+([Localhost setup](../../start/markdown/)) 
 
 Potential Project: Add a crosswalk from NAICS to HS.   
 
@@ -16,4 +16,4 @@ Co-Operation and Development](https://www.oecd.org/sti/ind/measuring-trade-in-va
 1. [World Input-Output Database (WOID)](http://www.wiod.org/otherdb)  
 
 
-[Code for All member countries](https://codeforall.org/members) | [More Project Ideas](../../)
+[Code for All countries](https://codeforall.org/members) | [More Project Ideas](../../)

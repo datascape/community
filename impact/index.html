@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/common/showdown.min.js"></script>
 <script type="text/javascript" src="../js/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../js/common/common.js"></script>
-<script type="text/javascript" src="../js/common/search-filters.js"></script>
+
 <!-- Activate to include site navigation-->
 <script type="text/javascript" src="../js/common/navigation.js"></script>
 <link rel="stylesheet" href="../css/leaflet/leaflet.css" />
@@ -22,11 +22,17 @@
 <script src="../js/leaflet/leaflet.js"></script>
 
 <script src="../js/d3/d3.v5.min.js"></script>
+
+<!-- after d3 -->
+<script type="text/javascript" src="../js/common/search-filters.js"></script>
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="../css/leaflet/leaflet.icon-material.css" rel="stylesheet">
 <script src="../js/leaflet/leaflet.icon-material.js"></script>
+<!--
 <script src="../js/d3/d3-legend.js"></script>
-<script type="text/javascript" src="../js/common/dual-map.js"></script>
+-->
+<script type="text/javascript" src="../js/common/dual-map.js?show=suppliers"></script>
 <link rel="stylesheet" href="../css/map.css" />
 
 
@@ -49,229 +55,9 @@
 
 <body>
 
-<style>
-.sidemapCard {
-  displayX: none; /* Also reactivate in dual-map. */
-}
-#map2 {
-  height:400px;
-}
-#industriesX {
-  display: none !important;
-}
-#mapHolder {
-  background-color: rgb(250, 250, 250);
-}
-.mapHolderInner {
-  overflow: scroll;
-  height: 900px;
-}
-#hublist {
-  margin-right: 20px;
-}
-#hublist-paddingX {
-  padding-right: 20px;
-  margin-right: 20px !important;
-}
-
-.editButton {
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.editButton:hover {
-  background-color: #efefef;
-}
-
-b {
-  font-weight: 600;
-}
-#map1 {
-	height: 280px;
-  height: 600px;
-}
-.showMobile { /* For delayed css load */
-  displayX:none;
-}
-.content {
-  max-width: 3000px !important;
-}
-#sidecolumnContent {
-	position: relative !important;
-}
-#logoholderside {
-	display:none;
-}
-#allLegends {
-	color:#fff !important; 
-}
-#allLegends > .label {
-	color:#fff !important; 
-}
-.topboxes {
-  border:1px solid #eee;
-  padding:10px;
-  padding-left:15px;
-  margin-bottom: 18px;
-  overflow: auto;
-  background: #fff;
-}
-
-#detaillist {
-  overflow-wrap: break-word;
-}
-
-.legendLink {
-    float:left;
-}
-.legendLinkRect {
-  width:15px;
-  height:15px;
-  margin-right:5px;
-  margin-top:3px;
-  float:left;
-}
-.listTitle {
-  font-size: 32px;
-  margin:0px;
-  font-weight: 600;
-  border-bottom:0px
-}
-@media (max-width: 800px) {
-  .legendLink {
-    float:auto;
-  }
-  .listTitle {
-    font-size: 26px;
-  }
-}
-.outcomesbox span {
-  float:right;
-  padding-rightX:20px;
-  font-weight: bold; /* the number 50 */
-}
-.outcomesbox div {
-  width: 100%;
-  border-top: 1px solid #fff;
-}
-.outcomesbox div div {
-  white-space: nowrap;
-}
-.leftWidget {
-  float:left;
-  max-widthX:420px;
-  max-widthX:500px;
-
-  width:100%;
-  max-width:2000px;
-
-  margin-right:30px;
-}
-
-#catListClone div {
-  font-size: 18px;
-  line-height: 26px;
-  border-bottom: 1px solid #ccc;
-}
-#catListClone div div {
-  float:left;
-  width:33.33%;
-  overflow: hidden;
-  border-right: 1px solid #ccc;
-}
-@media (max-width: 800px) {
-  #catListClone div div {
-    width:50%;
-  }
-}
-@media (max-width: 500px) {
-  #catListClone div div {
-    width:100%;
-  }
-}
-
-#industries {
-    float:right;
-    display:none;
-    padding-left:20px;
-    padding-bottom:0px;
-    max-width:520px;
-}
-@media (max-width: 800px) {
-  .leftWidget {
-    width:100%;
-    float: none;
-    margin-right:0px;
-  }
-  .hideCatsMobile {
-    display:none;
-  }
-
-  #industries {
-    float:none;
-  }
-}
-.showCats {
-  display:block;
-}
-@media (max-width: 800px) {
-  .showCats {
-    width:100%;
-    max-width: 100%;
-  }
-}
-.column50 {
-  width:250px;
-  float:left;
-}
-.column50mid {
-  width:25px;
-  float:left;
-}
-@media (max-width: 800px) {
-  .column50 {
-    max-width:400px;
-    width:100%;
-    float:none;
-  }
-  .column50mid {
-    display: none;
-  }
-}
-.widgetbar {
-  background: #ddd;
-  height:24px;
-  max-height:24px;
-  line-height: 18px;
-  font-size: 13px;
-  font-family: Lato, sans-serif;
-  font-weight: bold;
-  padding:6px 0 0 10px;
-}
-.boxborder {
-  border:1px solid #ddd;
-  padding:10px;
-  padding-left:16px;
-  font-size: 14px;
-}
-.plus-minus {
-  width:60px;
-  opacity: .4;
-}
-.plus-minus:hover {
-  opacity: 1;
-}
-#tableSide {
-  float:left;
-  displayX:none;
-}
-</style>
-
-
 <!-- INTRO -->
 
-<div id="introDiv" class="content contentpadding"></div>
+<div id="introDiv" style="display:none" class="content contentpadding"></div>
 
 <div id="readmeHolder" class="content contentpadding" style="display:none; margin-top:0px; padding-bottom:40px">
   <div id="readmeEdit" style='float:right' class='editButton'><a style="text-decoration: none" href='https://github.com/modelearth/community/tree/master/resources/useeio/design'>Edit</a></div>
@@ -280,6 +66,7 @@ b {
 </div>
 
 <script>
+  param["showhero"] = "false";
   if (param["intro"] || param["show"] == "farmfresh") {
     //document.getElementById("readmeHolder").style.display = "block";
     //document.getElementById("readmeEdit").style.display = "block";
@@ -299,426 +86,441 @@ b {
 <!-- /INTRO -->
 
 
-  <!-- FILTERS -->
-  <!--
-    Sample indicator:weight hash value: #census=pop>180:25;edu:50;work:50;pov>15;ypov>10;apov>8;spov>4
-    https://datascape.github.io/community/#columns=population:31;education:50
-  -->
-  <div class="filterPanel">
-    <div class="filterPanel_background">
-    </div>
+<!-- Start HTML -->
 
-    <div id="activeLayer" style="display: none"></div>
+<style>
+  svg{ max-width:none; } /* Fix for embedding material icon map points in Drupal */
+</style>
 
-    <div style="display:none;" class="filterField mock-up suppliers">
-      <div id="catSearchHolder">
-        <div class="filterLabel filterLabelMain">Supply Categories<!--Goods & Services--></div>
+<!-- FILTERS -->
+<!--
+  Sample indicator:weight hash value: #census=pop>180:25;edu:50;work:50;pov>15;ypov>10;apov>8;spov>4
+  https://datascape.github.io/community/#columns=population:31;education:50
+-->
+<div id="headerFixed" class="filterPanel">
+  <div class="headerOffset headerOffsetOne">&nbsp;</div>
 
-        <!--
-        <select id="selectProduct" class="selectMenu" style="float:left">
-            <option value="1">HS Code(s)</option>
-        </select>
-        -->
-
-        <!--
-        onkeyup="return SearchCategories(event);"
-
-
-        readonly - prevents keyboard covering choices on mobile
-        -->
-        <input readonly id="catSearch" class="filterClick mobileWide textInput" placeholder="Lookup" type="text" autocomplete="off" style="width: 200px; margin-top: 0px;" />
-      </div>
-    </div>
-
-  <!-- KEYWORD SEARCH -->
-  <div style="float:left">
-    <div class="filterField keywordField">
-      <!-- Search Companies -->
-      <div class="filterLabel filterLabelMain">Search</div>
-      <!--
-      <div style="position:absolute; right:8px; top:10px; z-index:1">
-        <i id="showAdvancedXXX" class="material-icons" style="font-size:24px;cursor:pointer">&#xE409;</i>
-        
-      </div>
-      -->
-
-      <div class="si-wrapper" style="float:left;position:relative">
-        <!-- speech input -->
-        <!-- was a button -->
-          <div style="display:none" class="si-btn mock-up">
-              <span class="si-holder" style="font-size: 20px">&#127897;</span>
-          </div>
-          <!-- maxlength="400"  -->
-          <input id="keywordsTB" autocomplete="off" 
-          style="padding-right:27px;" class="filterClick mobileWide textInput si-input" type="text" value="" onblurXX="SearchFormTextCheck(this, 0)" onfocusXX="SearchFormTextCheck(this, 1)" placeholderX="Search" onkeyup="return SearchEnter(event);" onkeypressX="return SearchEnter(event);" />
-      </div>
-
-    </div>
-
-
-    <div style="clear:both"></div>
-
-
-    <div class="keywordBubble">
-      <div id="keywordFields" class="fieldSelector filterBubbleHolder" style="margin-top:0px">
-            <div class="uparrow uparrow-grey" style="left: 34px;"></div>
-            <div class="uparrow uparrow-white" style="left: 34px;">
-            </div>
-
-            <div class="filterBubble">
-
-              <div id="findWhat" style="min-width: 176px">
-                <div id="hideAdvanced" style="float:right;cursor:pointer">&#10005;</div>
-
-                <div style="display:none;float:left;margin-right:20px">
-                  <input type="checkbox" name="findLocation" id="findLocation" value="findLocation" checked><label for="findLocation" class="filterCheckboxTitle">Search Listings</label><br>
-                  <input type="checkbox" name="findNews" id="findNews" value="findNews" checked><label for="findNews" class="filterCheckboxTitle">Search Newsroom</label><br>
-                </div>
-                <div style="float:left;" id="selected_col_checkboxes">
-
-                    <div>
-                      <input type="checkbox" class="selected_col" name="in" id="type" checked>
-                      <label for="type" class="filterCheckboxTitle"> In Type</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" class="selected_col" name="in" id="title" checked>
-                      <label for="title" class="filterCheckboxTitle"> In Title</label>
-                    </div>
-
-
-                    <div>
-                      <input type="checkbox" class="selected_col" name="findCompany" id="findCompany" value="1" checked><label for="findCompany" class="filterCheckboxTitle"> In Company Name</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" class="selected_col" name="findWebsite" id="findWebsite" value="1" checked><label for="findWebsite" class="filterCheckboxTitle"> In Website URL</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" class="selected_col" name="findKeywords" id="findKeywords" value="1" checked><label for="findKeywords" class="filterCheckboxTitle"> In Keywords</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" class="selected_col" name="findDetails" id="findDetails" value="1" checked><label for="findDetails" class="filterCheckboxTitle"> In Industry</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" class="selected_col" name="findProduct" id="findProduct" value="1" checked><label for="findDetails" class="filterCheckboxTitle"> In Product Description</label>
-                    </div>
-                    <div style="display:none">
-                      <input type="checkbox" class="selected_col" name="findNews" id="findNews" value="1"><label for="findNews" class="filterCheckboxTitle"> In Newsroom</label>
-                    </div>
-                    <div style="display:none">
-                      <input type="checkbox" class="selected_col" name="findContent" id="findContent" value="1"><label for="findContent" class="filterCheckboxTitle"> In Georgia.org</label>
-                    </div>
-                </div>
-              </div>
-            </div>
-                
-      </div>
-    </div>
+  <div class="filterPanel_background">
   </div>
-  <!-- END KEYWORD SEARCH -->
+
+  <div id="activeLayer" style="display: none"></div>
+
+ 
+  <div id="filterFieldsHolder" class="content contentpadding" style="padding-top:0px">
+    <div class="filterFields" style="min-height:54px; padding:2px 0 4px 0; float:left">
+
+      <div style="display:none;" class="filterField mock-up suppliers">
+        <div id="catSearchHolder">
+          <div class="filterLabel">
+            <div class="filterLabelMain">
+            Supply Categories<!--Goods & Services-->
+            </div>
+          </div>
 
 
-  <!-- LOCATION SEARCH - currently inactive - copy script from site/js/embed.js -->
-  <div style="float:left;">
+            <div style="position:relative; float:left;">
 
+                <div style="position:absolute; right:5px; top:5px; pointer-events:none;">
+                  <i class="material-icons" style="font-size:24px;cursor:pointer;">&#xE409;</i>
+                  <i class="material-icons" style="font-size:24px;cursor:pointer;display:none;">&#xE313;</i>
+                </div>
+                <!--
+                <select id="selectProduct" class="selectMenu" style="float:left">
+                    <option value="1">HS Code(s)</option>
+                </select>
+                -->
 
-        <div style="overflow: visible;display:none" class="local filterField searchElements mock-up">
-            <div class="filterLabel filterLabelMain">Where</div>
-
-            <div class="filterClick" id="filterClickLocation" style="position:relative; float:left;">
-
-              <div style="position:absolute; right:5px; top:5px;">
-                <i id="showLocations" class="material-icons" style="font-size:24px;cursor:pointer">&#xE409;</i>
-                <i id="hideLocations"  class="material-icons" style="font-size:24px;cursor:pointer;display:none">&#xE313;</i>
-              </div>
-              <div class="filterSelected" style="padding-right:28px">Entire State</div>
+                <!--
+                onkeyup="return SearchCategories(event);"
+                readonly - prevents keyboard covering choices on mobile
+                -->
+                <input readonly id="catSearch" class="filterClick mobileWide textInput" placeholder="Categories" type="text" autocomplete="off" style="width: 200px; margin-top: 0px;" />
+            </div>
         </div>
+      </div>
+
+      <!-- KEYWORD SEARCH -->
+      <div style="float:left">
+        <div class="filterField keywordField">
+          <!-- Search Companies -->
+          <div class="filterLabel">
+              <div class="filterLabelMain">
+                Search
+              </div>
+          </div>
+          <!--
+          <div style="position:absolute; right:8px; top:10px; z-index:1">
+            <i id="showAdvancedXXX" class="material-icons" style="font-size:24px;cursor:pointer">&#xE409;</i>
+            
+          </div>
+          -->
+
+          <div class="si-wrapper" style="float:left;position:relative">
+            <!-- speech input -->
+            <!-- was a button -->
+              <div style="display:none" class="si-btn mock-up">
+                  <span class="si-holder" style="font-size: 20px">&#127897;</span>
+              </div>
+              <!-- maxlength="400"  -->
+              <input id="keywordsTB" autocomplete="off" 
+              style="padding-right:27px;" 
+              class="filterClick mobileWide textInput si-input" 
+              type="text" value="" 
+              onblurXX="SearchFormTextCheck(this, 0)" onfocusXX="SearchFormTextCheck(this, 1)" 
+              placeholder="Search" onkeyup="return SearchEnter(event);" onkeypressX="return SearchEnter(event);">
+          </div>
+
+        </div>
+
+
+        <div style="clear:both"></div>
 
 
         <div class="keywordBubble">
-            <div id="filterLocations" class="fieldSelector filterBubbleHolder">
-
-              <!-- Stores location options. Not displayed. -->
-              <select style="display:none;" name="locationDD" id="locationDD">
-                <option value="all" style="display:none">All</option>
-                  <option value="state" selected="selected">Entire State1</option>
-                  <option value="current">Nearby</option>
-                  <option value="custom">Lat/Lon</option>
-                  <option value="city">Search by City</option>
-                  <option value="zip">Search by Zip</option>
-                  <option value="counties">Search by County</option>
-              </select>
-            
-                <div class="uparrow uparrow-grey" style="left: 34px;">
-                </div>
-
+          <div id="keywordFields" class="fieldSelector filterBubbleHolder" style="margin-top:0px">
+                <div class="uparrow uparrow-grey" style="left: 34px;"></div>
                 <div class="uparrow uparrow-white" style="left: 34px;">
                 </div>
 
-                <div class="filterBubble" style="pointer-events: auto;"><!-- Catch click through -->
-                    <input id="l" autocomplete="off" style="width:100%;max-width:400px;padding-right:27px;margin-bottom:10px" class="filterClick mobileWide textInput si-input" type="text" value="" onkeyup="return SearchEnter(event);" />
+                <div class="filterBubble">
 
-                    <ul class="filterUL" style="margin-top:0px;clear:both;min-width:120px;float:left">
-                      <li data-id="all" style="display:none"><a href="#">All</a></li>
-                        <li data-id="country:us"><a href="#">USA</a></li>
-                        <!--
-                        <li data-id="state" class="selected" style="white-space:nowrap"><a href="#">Entire State</a></li>
-                        -->
-                        <li data-id="state:ga" class="selected" style="white-space:nowrap"><a href="#">Georgia</a></li>
-                        
-                        
-                        <li data-id="city"><a href="#">Cities</a></li>
-                        <li data-id="counties"><a href="#">Counties</a></li>
-                        <li data-id="zip" style="white-space:nowrap"><a href="#">Zip Code</a></li>
-                        
-                        <li data-id="custom" class="hideFilter"><a href="#">Lat/Lon</a></li>
-                        <li data-id="current" class="hideFilter"><a href="#">Nearby</a></li>
-                        
-                    </ul>
-                    <div style="float:left; border:1px solid #ccc;padding:20px;max-width:150px">
-                        <b>Mock-Up</b><br>
-                        Lists to select countries, states/provinces, counties, cities and postal/zip codes will be displayed here.
+                  <div id="findWhat" style="min-width: 176px">
+                    <div class="hideAdvanced" style="float:right;cursor:pointer">&#10005;</div>
+
+                    <div style="display:none;float:left;margin-right:20px">
+                      <input type="checkbox" name="findLocation" id="findLocation" value="findLocation" checked><label for="findLocation" class="filterCheckboxTitle">Search Listings</label><br>
+                      <input type="checkbox" name="findNews" id="findNews" value="findNews" checked><label for="findNews" class="filterCheckboxTitle">Search Newsroom</label><br>
                     </div>
+                    <div style="float:left;" id="selected_col_checkboxes">
+                    </div>
+                  </div>
+                </div>
+                    
+          </div>
+        </div>
+      </div>
+      <!-- END KEYWORD SEARCH -->
+
+
+      <!-- LOCATION SEARCH - currently inactive - copy script from site/js/embed.js -->
+      <div style="float:left;">
+
+
+            <div style="overflow: visible;display:none" class="local filterField searchElements mock-up">
+                <div class="filterLabel">
+                  <div class="filterLabelMain">
+                    Where
+                    </div>
+                  </div>
+                <div class="filterClick" id="filterClickLocation" style="position:relative; float:left;">
+
+                  <div style="position:absolute; right:5px; top:5px;">
+                    <!-- We could place over all select menus
+                      https://fabriceleven.com/design/clever-way-to-change-the-drop-down-selector-arrow-icon/ -->
+                    <i id="showLocations" class="material-icons" style="transform: rotate(90deg); font-size:24px;cursor:pointer">&#xE409;</i>
+                    <i id="hideLocations"  class="material-icons" style="font-size:24px;cursor:pointer;display:none">&#xE313;</i>
+                  </div>
+                  <div class="filterSelected" style="padding-right:28px">Entire State</div>
+            </div>
+
+
+            <div class="keywordBubble">
+                <div id="filterLocations" class="fieldSelector filterBubbleHolder">
+
+                  <!-- Stores location options. Not displayed. -->
+                  <select style="display:none;" name="locationDD" id="locationDD">
+                    <option value="all" style="display:none">All</option>
+                      <option value="state" selected="selected">Entire State1</option>
+                      <option value="current">Nearby</option>
+                      <option value="custom">Lat/Lon</option>
+                      <option value="city">Search by City</option>
+                      <option value="zip">Search by Zip</option>
+                      <option value="counties">Search by County</option>
+                  </select>
+                
+                    <!--
+                    Bug: These appear when in embed-map.js
+
+                    <div class="uparrow uparrow-grey" style="left: 34px;">
+                    </div>
+
+                    <div class="uparrow uparrow-white" style="left: 34px;">
+                    </div>
+                    -->
+
+                    <div class="filterBubble" style="pointer-events: auto;"><!-- Catch click through -->
+                        <div class="hideAdvanced" style="float:right;cursor:pointer">&#10005;</div>
+
+                        <input id="l" autocomplete="off" style="width:100%;max-width:400px;padding-right:27px;margin-bottom:10px" class="filterClick mobileWide textInput si-input" type="text" value="" onkeyup="return SearchEnter(event);" />
+                        <div style="float:left; clear:both">
+                          <ul class="filterUL" style="margin-top:0px;clear:both;min-width:120px;float:left">
+                            <li data-id="all" style="display:none"><a href="#">All</a></li>
+                              <li data-id="country:us" class="local" style="display:none"><a href="#">USA</a></li>
+                              <!--
+                              <li data-id="state" class="selected" style="white-space:nowrap"><a href="#">Entire State</a></li>
+                              -->
+                              <li data-id="state:ga" class="selected" style="white-space:nowrap"><a href="#">Georgia</a></li>
+                              
+                              
+                              <li data-id="city" class="local" style="display:none"><a href="#">Cities</a></li>
+                              <li data-id="counties"><a href="#">Counties</a></li>
+                              <li data-id="zip" class="local" style="display:none,white-space:nowrap"><a href="#">Zip Code</a></li>
+                              
+                              <li data-id="custom" class="hideFilter"><a href="#">Lat/Lon</a></li>
+                              <li data-id="current" class="hideFilter"><a href="#">Nearby</a></li>
+                              
+                          </ul>
+                          <div style="overflow:auto; border:1px solid #ccc; padding:20px;" class="geoListHolder height100">
+                              <div class="geoListIntro" style="max-width:150px">
+                                <b>Click Counties</b><br>
+                                Lists to select states, cities and postal codes will be displayed here.
+                              </div>
+
+                              <div class="listHolder">
+                                <!--Cities -->
+                              </div>
+
+                              <div class="geoListCounties" style="overflow:scroll">
+                                <!-- Activate or remove
+                                <div style="float:right;margin:12px 0px 0 12px">
+                                  <input id="showValues" type="checkbox" checked> Show values
+                                </div>
+                                -->
+                                <div style="width:100%" class="output_table rotateHeader">
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+            
+        <!-- Secondary Location Filters -->
+          
+        <div style="float:left;display:none" class="currentCities">
+
+            <div class="filterField">
+                <div class="filterLabel">
+                  <div class="filterLabelMain">
+                    Cities
+                  </div>
                 </div>
 
+                <div class="cityText"></div>
+
             </div>
-          </div>
-        </div>
-        
 
-
-    <!-- Secondary Location Filters -->
-      
-    <div style="float:left;display:none" class="currentCities">
-
-        <div class="filterField">
-            <div class="filterLabel filterLabelMain">Cities</div>
-
-            <div class="cityText"></div>
-
-        </div>
-
-      </div>
-
-      <div style="float:left;display:none" class="currentCounties">
-
-        <div class="filterField">
-            <div class="filterLabel filterLabelMain"></div>
-
-            <div class="filterClick" style="position:relative; float:left;">
-              County Holder
-            </div>
-        </div>
-
-      </div>
-
-      <div id="coordFields" style="display:none;float:left;min-height:40px;">
-          <div style="float:left; margin-right: 6px">
-            <div class="filterLabel filterLabelMain">Latitude
-            </div>
-              <input id="lat" class="filterClick mobileWide textInput" placeholder="Latitude" type="text" style="width: 120px; margin-top: 0px" />
-          </div>
-          <div style="float:left; margin-right: 6px">
-            <div class="filterLabel filterLabelMain">Longitude
-            </div>
-              <input id="lon" class="filterClick mobileWide textInput" placeholder="Longitude" type="text" style="width: 120px; margin-top: 0px" />
-          </div>
-      </div>
-
-       <div id="zipFields" style="display:none; float:left">
-      
-          <div style="float:left; margin-right:6px; min-height:50px">
-            <div class="filterLabel filterLabelMain">Zip
-            </div>
-              <input id="zip" class="filterClick mobileWide textInput" type="text" placeholder="Enter Zip" style="width: 132px; margin-top: 0px" title="Enter zip code" />
           </div>
 
-          <div id="distanceInZip" style="float: left;"></div>
+          <div style="float:left;display:none" class="currentCounties">
+
+            <div class="filterField">
+                <div class="filterLabel"><div class="filterLabelMain">
+                </div></div>
+
+                <div class="filterClick" style="position:relative; float:left;">
+                  County Holder
+                </div>
+            </div>
+
+          </div>
+
+          <div id="coordFields" style="display:none;float:left;min-height:40px;">
+              <div style="float:left; margin-right: 6px">
+                <div class="filterLabel"><div class="filterLabelMain">Latitude
+                </div></div>
+                <input id="lat" class="filterClick mobileWide textInput" placeholder="Latitude" type="text" style="width: 120px; margin-top: 0px" />
+              </div>
+              <div style="float:left; margin-right: 6px">
+                <div class="filterLabel"><div class="filterLabelMain">Longitude
+                </div></div>
+                  <input id="lon" class="filterClick mobileWide textInput" placeholder="Longitude" type="text" style="width: 120px; margin-top: 0px" />
+              </div>
+          </div>
+
+           <div id="zipFields" style="display:none; float:left">
           
-          <div class="confirmationButtons" style="display:none;float:left; margin-top: 5px">
-              <a id="doneZip" class="button orangeButton" href="#">apply</a>
+              <div style="float:left; margin-right:6px; min-height:50px">
+                <div class="filterLabel"><div class="filterLabelMain">Zip</div></div>
+                  <input id="zip" class="filterClick mobileWide textInput" type="text" placeholder="Enter Zip" style="width: 132px; margin-top: 0px" title="Enter zip code" />
+              </div>
+
+              <div id="distanceInZip" style="float: left;"></div>
+              
+              <div class="confirmationButtons" style="display:none;float:left; margin-top: 5px">
+                  <a id="doneZip" class="button orangeButton" href="#">apply</a>
+                  
+              </div>
               
           </div>
+
+          <div id="currentButtons" style="float:left;">
+              <div id="doneLatLng" href="#"></div>
+          </div>
+
+          <div id="distanceInNear" style="float: left;">
+            
+          </div>
+
+          <div id="distanceField" class="filterField" style="display:none; float:left; min-height:50px">
           
-      </div>
+            <div class="filterLabel">
+              <div class="filterLabelMain">Distance</div></div>
 
-      <div id="currentButtons" style="float:left;">
-          <div id="doneLatLng" href="#"></div>
+              <select class="distance triggerSearch filterClick">
+                  <option value="">Distance...</option>
+                  <option value="1">1 Mile</option>
+                  <option value="2">2 Miles</option>
+                  <option value="3">3 Miles</option>
+                  <option value="5">5 Miles</option>
+                  <option value="10">10 Miles</option>
+                  <option value="15">15 Miles</option>
+                  <option value="20">20 Miles</option>
+                  <option value="25">25 Miles</option>
+                  <option value="30" selected="selected">30 Miles</option>
+                  <option value="40">40 Miles</option>
+                  <option value="50">50 Miles</option>
+                  <option value="60">60 Miles</option>
+                  <option value="75">75 Miles</option>
+                  <option value="100">100 Miles</option>
+                  <option value="150">150 Miles</option>
+                  <option value="200">200 Miles</option>
+                  <option value="300">300 Miles</option>
+                  <option value="400">400 Miles</option>
+                  <option value="500">500 Miles</option>
+              </select>
+          </div>
+        <!-- /Secondary Location Filters -->
       </div>
+      <!-- /LOCATION SEARCH -->
 
-      <div id="distanceInNear" style="float: left;">
+
+
+      <div class="searchField" style="float:left">
         
-      </div>
+          <!-- Submit Button -->
+            <div style="float:left; position:relative; margin-right:5px;">
+            
+              <div class="filterLabel">
+              <div class="filterLabelMain"></div>
+              </div>
 
-      <div id="distanceField" class="filterField" style="display:none; float:left; min-height:50px">
+              <!-- basicSearch goSearch searchHeight -->
+              <div id="goSearch" class="detailbutton" href="#" style="float:left;"><span style="font-size:14pt;padding-left:2px">&#128269;</span></div>
+
+              <!-- showAll showAllResults searchHeight -->
+              <div id="clearButton" class="detailbutton" style="float:left;margin:0px 6px 0px 0px">Clear</div>
+                
+              
+            </div>
+            <!-- /Submit Button -->
+
+            
+
+
+      </div><!-- /searchField -->
+
+    </div><!-- /filterFields -->
+  </div>
+    
+
+  <!-- CATEGORIES -->
+  <div style="position:relative;overflow:visible;clear:both">
+  <div id="topPanel" class="card" style="display:none;">
+
+    <div id="hideTopPanel" class="close-X" style="position:absolute;right:5px;top:8px;padding-right:10px">&#10005;</div>
+
+    <div style="overflow:scroll; max-height:350px">
+      <!--
+      Enter a code or keywords.<br><br>
+      -->
       
-        <div class="filterLabel filterLabelMain">Distance</div>
-
-          <select class="distance triggerSearch">
-              <option value="">Distance...</option>
-              <option value="1">1 Mile</option>
-              <option value="2">2 Miles</option>
-              <option value="3">3 Miles</option>
-              <option value="5">5 Miles</option>
-              <option value="10">10 Miles</option>
-              <option value="15">15 Miles</option>
-              <option value="20">20 Miles</option>
-              <option value="25">25 Miles</option>
-              <option value="30" selected="selected">30 Miles</option>
-              <option value="40">40 Miles</option>
-              <option value="50">50 Miles</option>
-              <option value="60">60 Miles</option>
-              <option value="75">75 Miles</option>
-              <option value="100">100 Miles</option>
-              <option value="150">150 Miles</option>
-              <option value="200">200 Miles</option>
-              <option value="300">300 Miles</option>
-              <option value="400">400 Miles</option>
-              <option value="500">500 Miles</option>
-          </select>
-      </div>
-    <!-- /Secondary Location Filters -->
-
-
-  </div>
-  <!-- /LOCATION SEARCH -->
-
-
-
-  <div class="searchField" style="float:left">
-      &nbsp;<br>
-    
-      <!-- Submit Button -->
-        <div style="float:left; position:relative; margin-right:5px;">
-        
-          <div class="filterLabel filterLabelMain"></div>
-
-          <!-- basicSearch goSearch searchHeight -->
-          <div id="goSearch" class="detailbutton" href="#" style="float:left;"><span style="font-size:14pt;padding-left:2px">&#128269;</span></div>
-
-          <!-- showAll showAllResults searchHeight -->
-          <div id="clearButton" class="detailbutton" style="float:left;margin:0px 6px 0px 0px">Clear</div>
-            
-            
-
+      <div style="display:none; float:left" class="suppliersXX">
+        <div class="filterLabel"><div class="filterLabelMain">&nbsp;</div></div>
+        <div id="catListHolderShow" class='detailbutton' style="float:left;margin-left:8px">
+            Goods & Services
         </div>
-        <!-- /Submit Button -->
+      </div>
 
+
+      <div style="clear:both"></div>
+
+
+      <div id="catsMobile" class="suppliers" style="display:none; margin:15px 20px 20px 0; float:left">
+        <div id="catListClone" class="showMobileX" style="width:100%">
+        </div>
+      </div>
+      <div style="clear:both"></div>
+
+      <div class="local mock-up" style="display:none">
+        <!-- 
+          Products for Export
+          add arrow to show this
+          Populate a dropdown 
+
+          <div class="catHeader">
+            <b>Products</b>
+          </div>
+        -->
+        
+        <b>Mock-Up</b> - HS categories are not yet cross-related to NAICS categories.<br><br>
+
+        <div id="hsCatList">
+          <div range="01-05" text="">Animals & Animal Products</div>
+          <div range="06-15" text="">Vegetable Products</div>
+          <div range="16-24" text="">Foodstuffs</div>
+          <div range="25-27" text="">Mineral Products</div>
+          <div range="28-38" text="">Chemicals & Allied Industries</div>
+          <div range="39-40" text="">Plastics / Rubber</div>
+          <div range="41-43" text="">Raw Hides, Skins, Leather & Furs</div>
+          <div range="44-49" text="">Wood & Wood Products</div>
+          <div range="50-63" text="">Textiles</div>
+          <div range="64-67" text="">Footwear / Headgear</div>
+          <div range="68-71" text="">Stone / Glass</div>
+          <div range="72-83" text="">Metals</div>
+          <div range="84-85" text="">Machinery / Electrical</div>
+          <div range="86-89" text="">Transportation</div>
+          <div range="90-92" text="">Cameras, Instruments, Clocks</div>
+          <div range="93-93" text="">Arms and Ammunition</div>
+          <div range="94-94" text="">Furniture and Bedding</div>
+          <div range="95-95" text="">Toys and Games</div>
+          <div range="96-96" text="">Miscellaneous Manufacturing</div>
+          <div range="97-97" text="">Art and Antiques</div>
+        </div>
         
 
+        <div style="clear:both;"></div>
 
-  </div><!-- /searchField -->
+        <div id='subcatHeaderHolder'>
+          <b><div id='allProductCats' class='backArrow'>&#60;&nbsp;</div> <span id='subcatHeader'>Harmonized System (HS) Product Categories</span></b>
+        </div>
 
+        <a name="listtop"></a>
 
+        <div id="productSubcats" class="menu" style="padding-top:14px">
+        </div>
+        <div style="clear:both;"></div>
 
-  
+        <br>
+        HS Codes<br>
+        <input id="productCodes" class="filterClick mobileWide textInput" placeholder="Categories" type="text" autocomplete="off" style="width: 120px; margin-top: 0px;" onkeyup="return SearchProductCodes(event);" />
 
-<!-- CATEGORIES -->
-<div id="topPanel" class="card" style="display:none;">
-
-  <div id="hideTopPanel" class="close-X" style="position:absolute;right:5px;top:8px;padding-right:10px">&#10005;</div>
-
-  <!--
-  Enter a code or keywords.<br><br>
-  -->
-  
-  <div style="display:none; float:left" class="suppliersXX">
-    <div class="filterLabel filterLabelMain">&nbsp;</div>
-    <div id="catListHolderShow" class='detailbutton' style="float:left;margin-left:8px">
-        Goods & Services
-    </div>
-  </div>
-
-
-  <div style="clear:both"></div>
-
-
-  <div id="catsMobile" class="suppliers" style="display:none; margin:15px 20px 20px 0; float:left">
-    <div id="catListClone" class="showMobileX" style="width:100%">
-    </div>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="local" style="display:none">
-    <!-- 
-      Products for Export
-      add arrow to show this
-      Populate a dropdown 
-
-      <div class="catHeader">
-        <b>Products</b>
       </div>
-    -->
-    
-    <b>Mock-Up</b> - HS categories are not yet cross-related to NAICS categories.<br><br>
 
-    <div id="hsCatList">
-      <div range="01-05" text="">Animals & Animal Products</div>
-      <div range="06-15" text="">Vegetable Products</div>
-      <div range="16-24" text="">Foodstuffs</div>
-      <div range="25-27" text="">Mineral Products</div>
-      <div range="28-38" text="">Chemicals & Allied Industries</div>
-      <div range="39-40" text="">Plastics / Rubber</div>
-      <div range="41-43" text="">Raw Hides, Skins, Leather & Furs</div>
-      <div range="44-49" text="">Wood & Wood Products</div>
-      <div range="50-63" text="">Textiles</div>
-      <div range="64-67" text="">Footwear / Headgear</div>
-      <div range="68-71" text="">Stone / Glass</div>
-      <div range="72-83" text="">Metals</div>
-      <div range="84-85" text="">Machinery / Electrical</div>
-      <div range="86-89" text="">Transportation</div>
-      <div range="90-92" text="">Cameras, Instruments, Clocks</div>
-      <div range="93-93" text="">Arms and Ammunition</div>
-      <div range="94-94" text="">Furniture and Bedding</div>
-      <div range="95-95" text="">Toys and Games</div>
-      <div range="96-96" text="">Miscellaneous Manufacturing</div>
-      <div range="97-97" text="">Art and Antiques</div>
     </div>
-    
+    <div id="topPanelFooter" class="local mock-up">Show more</div>
 
-    <div style="clear:both;"></div>
-
-    <div id='subcatHeaderHolder'>
-      <b><div id='allProductCats' class='backArrow'>&#60;&nbsp;</div> <span id='subcatHeader'>Harmonized System (HS) Product Categories</span></b>
-    </div>
-
-    <a name="listtop"></a>
-
-    <div id="productSubcats" class="menu" style="padding-top:14px">
-    </div>
-    <div style="clear:both;"></div>
-
-    <br>
-    HS Codes<br>
-    <input id="productCodes" class="filterClick mobileWide textInput" placeholder="Lookup" type="text" autocomplete="off" style="width: 120px; margin-top: 0px;" onkeyup="return SearchProductCodes(event);" />
-
-    <div id="topPanelFooter">Show more</div>
   </div>
-</div>
-<!-- END CATEGORIES -->
+
+  </div>
+  <!-- END CATEGORIES -->
 
 
 </div>
 <!-- END FILTERS -->
 
-
-<!-- HEX -->
-<div id="honeycombPanelHolder">
-  <div id="honeycombPanel" style="display:none">
-
-    <a name="sections"></a>
-    
-      <div class="bigThumbMenu widthColumns"></div>
-    
-
-    <div id="honeyMenuHolder" style="display:none">
-      <div id="honeycombMenu"></div>
-    </div>
-
-      <br><br>
-      
-  </div>
-</div>
-<!-- /HEX -->
 
 
 <aside class="Intermodal_Ports">
@@ -739,93 +541,364 @@ Port of Columbus,32.448734,-84.984038,Liquid Bulk,800 Lumpkin Blvd,Columbus,GA,3
 Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,Bainbridge,GA,39817
 </aside>
 
+<!-- Matches filterFields and headerFixed height -->
+<div class="headerOffset2" style="height:56px">&nbsp;</div>
+
+
+
+<!-- APP MENU -->
+<!-- From search-filters.js displayBigThumbnails function -->
+<!-- Currently search-filters.js limits loading to localhost -->
+<div id="honeycombPanelHolder" style="display:none">
+  <div id="honeycombPanel">
+
+    <a name="sections"></a>
+    
+      <div class="bigThumbMenu widthColumns"></div>
+    
+
+    <div id="honeyMenuHolder" style="display:none">
+      <div id="honeycombMenu"></div>
+    </div>
+
+      <br><br>
+      
+  </div>
+</div>
+<!-- /APP MENU -->
+
+<!-- Settings Panel -->
+<div class="settingsPanel topMenuOffset floater" style="display:none; position:fixed">
+
+  <div class="hideSettings hideSettingsClick" style="position:absolute;right:0;padding:0 12px 12px 12px;"><i class="material-icons" style="font-size:28px">&#xE5CD;</i></div>
+
+  <div style="font-size:16pt; margin-bottom:30px">Settings</div>
+
+  <div class="hideMobile">
+    <div classX="user-6" style="displayX:none">
+      <div class="sitemodeHolder" style="display:none;">
+        <div class="setLeft">Header</div>
+            <div class="setOverflow"><div class="setRight">
+              <select class="sitemode" id="sitemode">
+                <option value="widget" selected>Section Navigation</option>
+                <option value="fullnav">Full Navigation</option>
+                </select>
+            </div></div>
+            <div class="setDiv"></div>
+        </div>
+      </div>
+    </div>
+
+  <div class="setLeft">Style</div>
+    <div class="setOverflow"><div class="setRight">
+        <select id="sitelook">
+          <option value="default" selected>Default</option>
+          <option value="light">Light Colors</option>
+          <option value="dark">Night Vision</option>
+        </select>
+    </div></div>
+    <div class="setDiv"></div>
+
+    <div class="user-10" style="display:none">
+      <div class="sitesourceHolder" style="display:none">
+      <div class="setLeft">Display</div>
+        <div class="setOverflow"><div class="setRight">
+            <select class="sitesource">
+              <option value="overview" selected>Overview</option>
+              <option value="directory">Directory</option>
+            </select>
+        </div></div>
+        <div class="setDiv"></div>
+    </div>
+  </div>
+
+    <div style="display:none">
+        <div class="setLeft">Layout</div>
+        <div class="setOverflow"><div class="setRight">
+          <select id="bts">
+            <option value="12">Overview, Directory</option>
+            <option value="21">Directory, Overview</option>
+            <option value="02">Directory Only</option>
+                <option value="01">Overview Only</option>
+            </select>
+        </div></div>
+        <div class="setDiv"></div>
+    </div>
+    
+    <div class="setLeft"><div>Basemap</div></div>
+    <div class="setOverflow">
+      <div id='selector_menu' class="setRight">
+    
+        <select id='basemapSelector' class='layerSelector sitebasemap catchClick'>
+          <option value='positron_light_nolabels'>Positron</option>
+          <option value='osm'>Open Street Map</option>
+          <option value='esri'><!--- Esri -->Satellite Map</option>
+          <!-- Zoom not appearing -->
+          <!--<option value='default'>Open Street Map 2</option>-->
+          <!-- Zoom not appearing -->
+          <!-- <option value='green'>Green Topo Map</option>-->
+          <option value='dark'>Dark Background</option>
+          <option value='firemap'>Fire Map</option>
+        </select>
+    
+    </div>
+  </div>
+  
+
+  <!--
+  <div class="setDiv"></div>
+
+  <div class="setLeft"><div>Zoom To</div></div>
+    <div class="setOverflow">
+      <div class="setRight">
+    
+        <select class='center'>
+          <option value='mylocation'>My Location</option>
+          <option value='filter'>Nearby</option>
+          <option value='state'>State</option>
+          <option value='country'>Country</option>
+          <option value='world'>World</option>
+        </select>
+    
+    </div>
+  </div>
+  <div class="setDiv"></div>
+
+  <div style="displayX:none">
+        <div class="setLeft">My Latitude</div>
+        <div class="setOverflow"><div class="setRight">
+          
+            <input class="mylat filterClick mobileWide textInput" placeholder="Latitude" type="text" style="width: 120px; margin-top: 0px" />
+
+        </div></div>
+        <div class="setDiv"></div>
+    </div>
+    <div style="displayX:none">
+        <div class="setLeft">My Longitude</div>
+        <div class="setOverflow"><div class="setRight">
+          
+            <input class="mylon filterClick mobileWide textInput" placeholder="Longitude" type="text" style="width: 120px; margin-top: 0px" />
+
+        </div></div>
+        <div class="setDiv"></div>
+    </div>
+  -->
+
+    <!-- Multilayer Checkboxes -->
+    <!--
+  <div class="setLeft"><div>Layer Checkboxes</div></div>
+    <div class="setOverflow">
+      <div class="setRight">
+      <div class="hideMultiselect settingsButton">Visible</div>
+        <div class="showMultiselect settingsButton" style="display:none; background:#ddd">Hidden</div>
+      </div>
+    </div>
+    <div class="setDiv"></div>
+  -->
+
+    <!--
+    <div class="hideHero layoutTab filterTab buttonUnderCategories" style="margin:15px 10px 0 0;display:none">Hide Hero</div>
+    <div class="showHero layoutTab filterTab buttonUnderCategories" style="margin:15px 10px 0 0;">Show Hero</div>
+
+    <div class="setDiv"></div>
+  -->
+
+  <!--
+  <div><strong>Link</strong></div>
+  <input type="text" value='https://data.georgia.org/site/' style='line-height:18pt;display:block;width:100%;font-size:12pt;color:#333;background:#fff;border:1px solid #aaa;'><br>
+  -->
+
+    <!-- Embed Directory -->
+    <!--
+    <div class="setLeft">Embed</div>
+    <div class="setOverflow">
+      <div class="setRight">
+      
+        <div class="showEmbedTag settingsButton">View Sample</div>
+
+      </div>
+    </div>
+    <div class="embedTag" style="display:none">
+      <div style="margin-bottom:4px"><a href="widget.html#aerospace&sitelook=coi">Get HTML</a> - view source</div>
+
+
+      <input type="text" value='<script src="//data.georgia.org/site/js/embed.js?site=georgia&v=0.1"></script><div id="map"></div>' 
+      style='display:none;line-height:18pt;width:100%;font-size:12pt;color:#333;background:#fff;border:1px solid #aaa;'>
+    </div>
+    -->
+
+  <br />
+
+  <div class="user-5" style="display:none">
+    <hr>Staff only - 
+    <a href="/maps/leaflet/providers/preview/" target="basemaps">View Basemaps</a> | 
+    <a href="/community/impact/json/menu.json">View JSON</a><br>
+    <div class="settingAdminNotes"></div>
+  </div>
+
+</div>
+<!-- End Settings Panel -->
+
+<div style="clear:both"></div>
+
 
 <div class="displayOnload" style="display:none;position:relative">
-  <div id="map1"></div>
-  <div id="legendHolder">
-    <div id="allLegends"></div>
-  </div>
+<div id="map1"></div>
+<div id="legendHolder">
+  <div id="allLegends"></div>
+</div>
 </div>
 
 <div style="clear:both"></div>
 
 
-<div id="tableSide" class="hideMobile">
-  <div id='sidecolumn' class='hideprint' style="display: none">
-  </div>
 
-  <div style="display:none;margin:20px 10px 20px 17px; min-width:195px; line-height: 1.5em;" class="suppliers">
-    <div class="catList" id="industryCatList">
-      <div>All Categories</div>
-      <div>Air Purifying Machines</div>
-      <div>Face Shields</div>
-      <div>Gloves</div>
-      <div>Hair Covers</div>
-      <div>Hand Sanitizer</div>
-      <div>Hospital Beds</div>
-      <div>Masks</div>
-      <div>Negative Pressure Machines</div>
-      <div>No-Touch Thermometers</div>
-      <div>Regular Thermometers</div>
-      <div>Safety Goggles</div>
-      <div>Sanitation Units</div>
-      <div>Sanitizing Spray</div>
-      <div>Sanitizing Wipes</div>
-      <div>Shoe Covers</div>
-      <div>Surgical Gowns</div>
-      <div>Surgical Masks</div>
-      <div>Tyvek Suits</div>
-      <div>Ventilators</div>
-      <div class="suppliers_pre" style="display:none">Warehouse</div>
-    </div>
-  </div>
+
+<div id="tableSide" class="hideMobile">
+<div id='sidecolumn' class='hideprint' style="display: none">
 </div>
 
-<div id="list_main" style="overflow:auto;">
+<!-- INDUSTRIES -->
+<div class="mock-up" style="display:none; padding-top:20px; padding-bottom:80px">
+
+
+  <div class="sideWidget eWidget">
+    <div class="widgetbar" style="font-size: 24px;font-weight:200;padding:10px;min-height:34px">LOCAL GOODS & SERVICES</div>
+    <div class="topboxes" style="min-heightX: 120px">
+
+      <!--
+      <div style="font-size:18px">Set your goals</div>
+      <br>
+      -->
+
+      <b>Adjust Industry Levels</b>
+      to reflect technology initiatives 
+      that generate new revenue streams, create jobs and 
+      increase your community's positive outcomes.
+
+      <!--
+        Create new mixes of local goods and services.
+      -->
+    </div>
+  </div>
+
+  <div class="sideWidget eWidget">
+    <div class="widgetbar" style="padding-left:5px">
+      <a href="../start/dataset/"><img src="/community/impact/img/backarrow.gif" style="width:11.5px;float:left;margin:1px 7px 0 0"></a>
+      AGRICULTURE, FORESTRY, FISHING AND HUNTING
+    </div>
+    
+    <div class="topboxes">
+      <div style="position: relative">
+          <img src="/community/impact/img/sectors.gif" style="width:100%;max-width:400px;margin-right:80px" />
+          <div style="position: absolute; right:0; top:8px; background: rgb(250,250,250); padding-left:6px">
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus"><br>
+            <img src="/community/impact/img/plus-minus.gif" class="plus-minus">
+          </div>
+      </div>
+
+      <div style="font-size: 12px; background:#eee; border-bottom:1px solid #ddd; display:inline; padding:0 4px 0 4px">
+        <a href="../start/dataset/">Main categories</a> | 
+        <a href="../start/dataset/">Show all 382 sectors</a>
+
+        <span style="float:right; color:#777">Balanced &nbsp;</span>
+
+      </div>
+
+    </div>
+  </div>
+  
+</div>
+<!-- /INDUSTRIES -->
+
+<div style="display:none;margin:20px 10px 20px 17px; min-width:195px; line-height: 1.5em;" class="suppliers">
+  <div class="catList" id="industryCatList">
+    <div>All Categories</div>
+    <div>Air Purifying Machines</div>
+    <div>Face Shields</div>
+    <div>Gloves</div>
+    <div>Hair Covers</div>
+    <div>Hand Sanitizer</div>
+    <div>Hospital Beds</div>
+    <div>Masks</div>
+    <div>Negative Pressure Machines</div>
+    <div>No-Touch Thermometers</div>
+    <div>Regular Thermometers</div>
+    <div>Safety Goggles</div>
+    <div>Sanitation Units</div>
+    <div>Sanitizing Spray</div>
+    <div>Sanitizing Wipes</div>
+    <div>Shoe Covers</div>
+    <div>Surgical Gowns</div>
+    <div>Surgical Masks</div>
+    <div>Tyvek Suits</div>
+    <div>Ventilators</div>
+    <div class="suppliers_pre" style="display:none">Warehouse</div>
+  </div>
+</div>
+</div>
+
+<div id="list_main" style="overflow:auto; background: #fff">
 
 
 <!-- buttons -->
-  <style>
-          .pagebuttonHolder {
-            padding: 4px;
-            overflow: auto;
-            background-color:#fff;
-            border-bottom: 1px solid #eee;
-            width:100%;
-          }
-          .pagebutton {
-            background:#4586F6;
-            background: #bbb;
-            margin-right: 8px;
-            color:#fff;
-            border-radius: 5px;
-            padding: 0px 8px 0 10px;
-            min-height: 34px;
-            vertical-align: middle;
-            cursor: pointer;
-            /* text-transform: uppercase; */
-            font-family: 'Open Sans', 'Helvetica Neue', HelveticaNeue, calibri, arial, sans-serif;
-            font-size: 15.5px;
-            font-weight: 400;
-            line-height: 1;
-          }
-          .pagebutton:hover {
-            background-color:#7a7a7a;
-          }
-          .listOptions {
-            display:none;
-            position:absolute;
-            left:auto;
-            right: 0;
-            top: 44px;
-            width: 164px;
-          }
-        </style>
+<style>
+        .pagebuttonHolder {
+          padding: 4px;
+          padding-top: 6px;
+          padding-bottom: 11px;
+          overflow: auto;
+          background-color:#fff;
+          width:100%;
+        }
+        .pagebutton {
+          background: #cfcfcf;
+          margin-right: 8px;
+          color:#fff;
+          border-radius: 5px;
+          padding: 0px 4px 0 6px;
+          min-height: 34px;
+          vertical-align: middle;
+          cursor: pointer;
+          /* text-transform: uppercase; */
+          font-family: 'Open Sans', 'Helvetica Neue', HelveticaNeue, calibri, arial, sans-serif;
+          font-size: 15.5px;
+          font-weight: 400;
+          line-height: 1;
+        }
+        .pagebutton:hover {
+          background-color:#aaa;
+        }
+        .listOptions {
+          display:none;
+          position:absolute;
+          left:auto;
+          right: 0;
+          top: 44px;
+          width: 164px;
+        }
+      </style>
 
+
+      <div class="content contentpadding" style="padding-top:0px">
         <div style="overflow: visible;">
 
-          <div class="pagebuttonHolder" style="min-height:45px; overflow: visible;">
-          <div style="float:right">
+          <div class="pagebuttonHolder" style="min-height:45px;">
+
+            <h1 class="shortTitle" style="displayX:none; margin-bottom:0px; padding:4px 15px 4px 0; white-space: nowrap; float:left; font-size:28px; color:#999; margin-top;"></h1>
+
+          <div style="float:right;padding-top:6px">
             <div class="sendfeedback pagebutton" style="float:left;">
               <div style="margin:10px 5px 0 3px;white-space: nowrap; float:left"> 
               Feedback
@@ -840,6 +913,7 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
               </div>
             </div>
 
+            <!--
             <div class="local addlisting pagebutton greenButton" href="#" style="float:left; display:none">
               
               <div class="hideMobile" style="margin:10px 5px 0 3px;white-space: nowrap; float:left"> 
@@ -853,11 +927,12 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
               Partner Tools
               </div>
             </div>
+            -->
 
             <!-- Down arrow -->
             <div class="local catchClick hideEmbed" style="position:relative;float:left;overflow:visible;">
 
-              <div class="toggleListOptions pagebutton" style="padding:2px"><i class="material-icons toggleArrow" style="font-weight:900; font-size: 32px; padding:0px; margin:0px">&#xE5C5;</i>
+              <div class="toggleListOptions pagebutton"><i class="material-icons toggleArrow" style="font-weight:900; font-size: 32px; padding:0px; margin:0px">&#xE5C5;</i>
               </div>
 
               <div class="listOptions filterBubble">
@@ -912,25 +987,27 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
             <div class="showInfo showInfoButton1 pagebutton" style="float: left; padding: 3px 3px 3px 4px; color:#fff; display:none;"><i class="material-icons" style="font-size:28px;">&#xE88F;</i>
             </div>
           </div>
-          </div>
-
         </div>
-        <div style="clear:both">
-        </div>
-  <!-- /buttons -->
-
-<!-- move after left column -->
+      </div>
 
 
-<!-- Start HTML -->
-<section id="data" style="overflow:auto">
+      </div><!-- /content -->
+
+      <div style="clear:both; border-bottom: 1px solid #eee;">
+      </div>
+<!-- /buttons -->
+
+
+
+<section class="data-section" id="data" style="overflow:auto">
 <div class="content contentpadding litePanel displayOnload" style="display:none; padding-top:0px; padding-bottom:10px; padding-right:0px">
 
   <div id="flexwrapper">
     <div id="hublist" style="padding-top:20px">
       <div id="hublist-padding">
         
-        <h1 class="listTitle"></h1><br>
+        <h1 class="listTitle" style="display:none;margin-bottom:12px"></h1>
+        <h2 class="listSubtitle" style="display:none"></h2>
 
         <div style="display:none" class="suppliers">
           
@@ -951,26 +1028,30 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
             <div style="clear:both"></div>
           </div>
 
-          <div style="display:none">
+          <div id="suppliers_noiframe" style="display:none">
 
+           
+            <!--
             Georgia businesses are responding to the call for manufacturing and  
-            distribution of critical supplies via the state's <a href="https://www.georgia.org/covid19response">COVID-19 Response Form</a>. To make a listing correction or update, please 
+            distribution of critical supplies via the state's <a href="https://www.georgia.org/covid19response">COVID-19 Response Form</a>. 
+            -->
+
+            <span style="display:none" class="suppliers_pre_message">
+            <a href="https://www.georgia.org/covid19suppliersmap" target="covid19suppliersmap">Learn more</a> about our supplier list and map.
+            </span>
+            <!--
+            To make a listing correction or update, please 
             <a href="https://www.georgia.org/covid19response" style="white-space: nowrap;">submit a new entry</a> 
             or use the "feedback" button above. <a href="https://www.georgia.org/covid19suppliers">View PDF and learm more</a>.
+            -->
 
             <span style="display:none" class="suppliers_pre_message">
             Some of the locations are randomized by a couple miles since they were posted prior to our public listing registration.
-            </span>
-
             <br><br>
+            </span>
+            
           </div>
         </div>
-
-        <div style="display:none;" class="mock-upRemoved">
-        The map to the right will highlight local counties and <a href="../zip/leaflet/#columns=JobsAgriculture:50;JobsManufacturing:50">zip codes</a> based on interaction with lists and charts. 
-        Lists will include <a href="../farmfresh/ga/">farm fresh produce</a> and <a href="../tools/#places">all&nbsp;the&nbsp;places</a>.
-        </div>
-
 
 
           <sectionX id="directory" class="mock-up" style="display:none;">
@@ -1047,6 +1128,7 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
           <div id="sidemapbar" class="widgetbar">
             <div id="sidemapName" style="position:absolute; left:0; padding:4px 4px 4px 10px">
             </div>
+            <div id="hideSideMap" class="close-X" style="position:absolute;right:0px;top:8px;padding-right:10px;color:#aaa">&#10005;</div>
           </div>
 
           <div style="clear:both">  
@@ -1067,13 +1149,16 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
         </div>
 
         <!-- INDUSTRIES -->
-        <div class="mock-up" style="display:none; padding-top:20px; padding-bottom:80px">
+        <div class="mock-up" style="display:none; padding-bottom:80px">
 
           <!-- TOP WIDGETS -->
           <div>
 
             <div style="margin-bottom:14px">
-              <b style="font-size:16px">Mock-Up</b> - <a href="https://modelearth.github.io/eeio/charts">Embeddable EEIO charts</a> under development.        
+              <b style="font-size:16px">About</b><br>
+              <a href="https://modelearth.github.io/io/charts">Embeddable  charts</a> - 
+              <a href="./?show=pickup&design=1">Design Ideas</a> - 
+              <a href="./?show=suppliers">C19 Logistics</a>
             </div>
 
             <div style="display:none; float:left; margin-right:30px">
@@ -1100,75 +1185,24 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
 
                   <!-- was width:230px; -->
                   <div style="float:left;width:250px; margin-right:30px">
-                    <div>1. Value-Added <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>2. Quality Jobs <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>3. Clean Air <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>4. Clean Water <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>5. Clean Energy <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>1. Value-Added <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>2. Quality Jobs <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>3. Clean Air <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>4. Clean Water <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>5. Clean Energy <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
                     
                   </div>
                   <div style="float:left;width:250px">
-                    <div>6. Local Suppliers <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>7. Green Materials <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>8. Inclusive Design <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>9. Improves Health <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
-                    <div>10. Creates Beauty <span><img src="img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>6. Local Suppliers <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>7. Green Materials <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>8. Inclusive Design <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>9. Improves Health <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
+                    <div>10. Creates Beauty <span><img src="/community/impact/img/greenbar.gif" style="width:80px;height:14px;margin-right:8px">50</span></div>
                   </div>
                 </div>
               
             </div>
             <div style="clear:both"></div>
-
-            <div class="leftWidget eWidget">
-              <div class="widgetbar">ENVIRONMENTAL INPUT</div>
-              <div class="topboxes" style="min-heightX: 120px">
-                <div style="font-size: 18px">Set your goals</div>
-                <br>
-
-                <b>Adjust Industry Levels</b>
-                to reflect technology initiatives 
-                that generate new revenue streams, create jobs and 
-                increase your community's positive outcomes.
-
-              </div>
-            </div>
-
-            <div class="leftWidget eWidget">
-              <div class="widgetbar" style="padding-left:5px">
-                <a href="../samples/dataset/"><img src="img/backarrow.gif" style="width:11.5px;float:left;margin:1px 7px 0 0"></a>
-                AGRICULTURE, FORESTRY, FISHING AND HUNTING
-              </div>
-              
-              <div class="topboxes">
-                <div style="position: relative">
-                    <img src="img/sectors.gif" style="width:100%;max-width:400px;margin-right:80px" />
-                    <div style="position: absolute; right:0; top:8px; background: rgb(250,250,250); padding-left:6px">
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus"><br>
-                      <img src="img/plus-minus.gif" class="plus-minus">
-                    </div>
-                </div>
-
-                <div style="font-size: 12px; background:#eee; border-bottom:1px solid #ddd; display:inline; padding:0 4px 0 4px">
-                  <a href="../samples/dataset/">Main categories</a> | 
-                  <a href="../samples/dataset/">Show all 382 sectors</a>
-
-                  <span style="float:right; color:#777">Balanced &nbsp;</span>
-
-                </div>
-
-              </div>
-            </div>
 
 
             <div style="overflow: auto;" class="leftWidget eWidget">
@@ -1181,18 +1215,18 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
                 <div style="clear:both">
                 </div>
                 <div class="topboxes">
-                  <div style="border-bottom: 1px solid #eee; padding-bottom:8px; margin-bottom:8px">
+                  <div style="display:none; border-bottom: 1px solid #eee; padding-bottom:8px; margin-bottom:8px">
                     <b>Perspective:</b> Supply Chain, Point of Consumption<br>
                     <b>System:</b> Full System, Food System<br>
                     <b>Type:</b> Consumption, Production<br>
                     <b>Indicator & Weight:</b> Impact, Resources, Waste, Chem, Econ<br>
                   </div>
 
-                  <div class="column50" style="float:left"><img src="img/impacts1.gif" style="width:100%; padding-right:40px" />
+                  <div class="column50" style="float:left"><img src="/community/impact/img/impacts1.gif" style="width:100%; padding-right:40px" />
                   </div>
                   <div class="column50mid" style="float:left">&nbsp;
                   </div>
-                  <div class="column50" style="float:left"><img src="img/impacts2.gif" style="width:100%; padding-right:40px" />
+                  <div class="column50" style="float:left"><img src="/community/impact/img/impacts2.gif" style="width:100%; padding-right:40px" />
                   </div>
               </div>
 
@@ -1218,11 +1252,8 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
 </div>  
 
 </section>
-<!-- End HTML -->
-
-
-
 </div>
+<!-- list_main /-->
 
 <div id="fixedFooter" class="showMobile">
   <div>
@@ -1230,8 +1261,15 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
     <div class="go_map">State Map</div>
     <div class="go_local" style="display:none">Local Map</div>
     <div class="go_info" style="display:none">Info</div>
+    <div class="go_search">Search</div>
   </div>
 </div>
+
+<!-- End HTML -->
+
+
+
+
 
 <!--
 To add and update listings, download the <a href="map.csv">map.csv</a> file and edit within a spreadsheet.  
@@ -1243,479 +1281,73 @@ To add and update listings, download the <a href="map.csv">map.csv</a> file and 
 
 <script>
 // Omit 'use strict' when creating an embed because it could brake other's code.
-'use strict'; // Optional, make sure we are declaring variable.
+'use strict'; // Optional, make sure we are declaring variables.
 
 
-// MAP 1
-// var map1 = {};
-function loadMap1() { // Also called by search-filters.js
-  console.log('loadMap1')
-  let dp1 = {}
-  // Might use when height it 280px
-  dp1.latitude = 31.6074;
-  dp1.longitude = -81.8854;
-
-  // Georgia
-  dp1.latitude = 32.9;
-  dp1.longitude = -83.4;
-  dp1.zoom = 7;
-  dp1.listLocation = false; // Hides Waze direction link in list, remains in popup.
-  if (param["show"] == "suppliers" || param["show"] == "mockup") { // "http://" + param["domain"]
-
-    dp1.listTitle = "Georgia COVID-19 Response";
-    dp1.listTitle = "Georgia Suppliers of&nbsp;Critical Items <span style='white-space:nowrap'>to Fight COVID-19</span>"; // For iFrame site
-
-    dp1.listInfo = "Select a category to filter your results.";
-    dp1.dataset = "https://georgiadata.github.io/smartdata/resources/suppliers/ga_suppliers.csv";
-    //dp1.dataset = "/smartdata/resources/suppliers/ga_suppliers.csv";
-    if (param["initial"] == "response") {
-      dp1.dataset = "/smartdata/resources/suppliers/ga_suppliers_pre.csv";
-    }
-    dp1.dataTitle = "Manufacturers and Distributors";
-    dp1.itemsColumn = "items";
-    dp1.valueColumn = "type";
-    dp1.valueColumnLabel = "Type";
-    dp1.markerType = "google";
-    //dp1.keywords = "items";
-    // "In Business Type": "type", "In State Name": "state", "In Postal Code" : "zip"
-    dp1.search = {"In Items": "items", "In Website URL": "website", "In City Name": "city", "In Zip Code" : "zip"};
-    dp1.nameColumn = "title";
-    dp1.latColumn = "lat_rand";
-    dp1.lonColumn = "lon_rand";
-
-    if (param["initial"] != "response") {
-      dp1.nameColumn = "company";
-      dp1.latColumn = "latitude";
-      dp1.lonColumn = "longitude";
-      dp1.showLegend = false;
-    }
-
-    dp1.listLocation = false;
-    dp1.addLink = "https://www.georgia.org/covid19response"; // Not yet used
-  } else if (param["show"] == "produce" || param["design"]) {
-    dp1.listTitle = "USDA Farm Produce";
-    dp1.dataset = "/community/map/starter/farmersmarkets-ga.csv";
-    dp1.name = "Local Farms"; // To remove
-    dp1.dataTitle = "Farm Fresh Produce";
-    dp1.markerType = "google";
-    dp1.search = {"In Market Name": "MarketName","In County": "County","In City": "city","In Street": "street","In Zip": "zip","In Website": "Website"};
-    dp1.nameColumn = "marketname";
-    dp1.titleColumn = "marketname";
-    dp1.searchFields = "marketname";
-    dp1.addressColumn = "street";
-    dp1.valueColumn = "Prepared";
-    //dp1.valueColumn = "type";
-    dp1.valueColumnLabel = "Prepared Food";
-    dp1.latColumn = "y";
-    dp1.lonColumn = "x";
-    dp1.stateColumn = "state";
-
-    dp1.addlisting = "https://www.ams.usda.gov/services/local-regional/food-directories-update";
-
-    dp1.listInfo = "Green locations offer <span style='white-space: nowrap'>prepared food<br>Please call ahead to arrange pickup or delivery.</span><br>You can help keep this data current. <a style='white-space: nowrap' href='../farmfresh'>Learn about data</a>";
+// COMMON - also resides in embed-map.js
+function loadScript(url, callback)
+{
+  if (!document.getElementById(url)) { // Prevents multiple loads.
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    script.id = url; // Prevents multiple loads.
+    // Bind the event to the callback function. Two events for cross browser compatibility.
+    script.onreadystatechange = callback;
+    script.onload = callback;
+    //$(document).ready(function () { // Only needed if appending to body
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(script);
+    //});
+    console.log("loadScript loaded: " + url);
   } else {
-    // Atlanta
-    dp1.latitude = 33.76;
-    dp1.longitude = -84.3880;
-    dp1.zoom = 14;
-
-    // CURBSIDE PICKUP
-    dp1.listTitle = "Atlanta Restaurants Providing Takeout and Delivery";
-    dp1.listInfo = "Data provided by coastapp.com. <a href='https://coastapp.com/takeoutcovid/atl/' target='_blank'>Make Updates</a>";
-    dp1.dataset = "/community/places/usa/ga/restaurants/atlanta-coastapp.csv";
-    dp1.dataTitle = "Curbside Pickup";
-    // 
-    dp1.markerType = "google";
-    dp1.search = {"In Restaurant Name": "Name", "In Description": "Description", "In City Name": "City", "In Address" : "Address"};
-    dp1.nameColumn = "Name";
-    dp1.titleColumn = "Description";
-    //dp1.addressColumn = "Address";
-    //dp1.website = "Link";
-    dp1.valueColumnLabel = "Delivery";
-    dp1.valueColumn = "Delivery";
-    dp1.listLocation = true;
+    console.log("loadScript script already available: " + url);
+    callback();
   }
-
-  $("#detaillist").text(""); // Clear prior results
-  // map1 = 
-  loadFromCSV('map1','map2', dp1, function(dp) { // Called on success
-      
-      if (!overlays2["Railroads"]) {
-        overlays2["Railroads"] = dp.group; // Allows us to check if layer already added. Setting to db.group not currently user.
-        layerControl['map1'].addOverlay(baselayers["Rail"], "Railroads"); // Appends to existing layers
-      } 
-  });
-
-  // Return to top for mobile users on search.
-  if (document.body.clientWidth <= 500) {
-    window.scrollTo({
-      top: 0,
-      left: 0
-    });
-  }
+  // Nested calls are described here: https://books.google.com/books?id=ZOtVCgAAQBAJ&pg=PA6&lpg=PA6
 }
-// http://localhost:8887/community/response/?show=suppliers#q=rin&cols=items,city,state,zip
-populateFieldsFromHash();
+
+
+dual_map.init(["somevalue", 1, "controlId"]); // Used by link to feedback form
+//dual_map.helloWorld();
+//dual_map.community_root();
+
+
 loadMap1();
+
+// Append railroads here, somehow
+//layerControl['map1'].addOverlay(baselayers["Rail"], "Railroads"); // Appends to existing layers
+//layerControl['map2'].addOverlay(baselayers["Rail"], "Railroads"); // Appends to existing layers
+
 window.onhashchange = function() {
   //param = loadParam(location.search,location.hash);
   console.log("user changed hash")
   loadMap1();
 }
 
-// MAP 2 - INTERMODAL PORTS
-if (1==2) {
-    let dp2 = {
-      selector: "aside.Intermodal_Ports",
-      delimiter: ",",
-      numColumns: ["lat","lon"],
-      valueColumn: "value",
-      scaleType: "scaleOrdinal",
-      //scaleType: "scaleQuantile",
-      //scaleType: "scaleThreshold",
-    }
-    //dp2.name = dp2.selector.split(".").pop(); // name: Intermodal_Ports
-    dp2.name = "Intermodal Ports";
-    dp2.listLocation = false;
 
-    dp2.latitude = 31.6074;
-    dp2.longitude = -81.8854;
-    // Bruswick GA - Jesup was not centering
-    dp2.latitude = 31.1500;
-    dp2.longitude =  -81.4915;
-
-    dp2.zoom = 8;
-    dp2.markerType = "google";
-    dp2.data = readData(dp2.selector, dp2.delimiter, dp2.numColumns, dp2.valueColumn);
-    //dp2.color = '#0033ff'; // Alternative to scale
-    dp2.scale = getScale(dp2.data, dp2.scaleType, dp2.valueColumn);
-
-    dp2.group = L.layerGroup();
-    //dp2.group2 = L.layerGroup();
-    //dp2.iconName = 'device_hub';
-    dp2.iconName = "language";
-    dp2.nameColumn = "group";
-    
-
-    //dataParameters.push(dp2);
-
-    // Legend needs to reside below map on left, or in side popup
-    //addLegend(dp2.scale, dp2.scaleType, dp2.name);
-
-    populateMap('map2', dp2, function(map) { // Called on success
-
-      // Add another layer to existing map
-      dp2 = {}
-      dp2.name = "Communities";
-      dp2.dataset = "/community/tools/map.csv";
-      loadFromCSV('map1', 'map2', dp2, function(results) {
-        // Add Railroad layer
-        layerControl['map2'].addOverlay(baselayers["Rail"], "Railroads"); // Appends to existing layers
-      });
-    });
-}
-
-$(document).ready(function () {
-
-  if (param["show"] == "mockup" || param["mockup"] || param["design"]) {
-    var div = $("<div />", {
-        html: '<style>.mock-up{display: block !important;}</style>'
-      }).appendTo("body");
-  }
-  if (param["show"] == "mockup" || param["show"] == "suppliers") {
-    var div = $("<div />", {
-        html: '<style>.suppliers{display: block !important;}</style>'
-      }).appendTo("body");
-  }
-
-  if (param["show"] == "produce") {
-    $('.addlisting').show();
-  }
-
-  $('#catListClone').html($('#industryCatList').clone());
-
-  $('.catList > div').click(function () {
-    var catTitle = $(this).text();
-    //$('#keywordsTB').val(catTitle); // Temp
-    $('#catSearch').val(catTitle);
-    $('#items').prop("checked", true); // Add front to parameter name.
-    
-    $('#industryCatList > div').removeClass('catListSelected');
-    
-    var catString = $(this).text();
-    $('.catList > div').filter(function(){
-        return $(this).text() === catString
-    }).addClass('catListSelected');
-
-    $("#topPanel").hide();
-    $('#catListHolderShow').text('Product Categories');
-    //$('html,body').animate({
-    //    scrollTop: $("#hublist").offset().top - 250
-    //});
-
-    console.log("catList clicked, call loadMap1 which calls loadFromCSV > showList in dual-map.js");
-    loadMap1();
-    //hideNonListPanels();
-    event.stopPropagation();
-  });
-
-  $('.toggleListOptions').click(function(event) {
-      if ($('.toggleListOptions').hasClass("expand")) {
-          $('.toggleListOptions').removeClass("expand");
-          $('.listOptions').hide();
-      } else {
-          $('.toggleListOptions').addClass("expand");
-          if ($(".listPanel").is(':visible')) {
-              $('.listOptions .hideList').show();
-          } else {
-              $('.listOptions .hideList').hide();
-          }
-          $('.listOptions').show();
-      }
-      event.stopPropagation();
-  });
-
-  // If this does not work, may need to call when map1 is initially loaded, but only once.
-  $('.refreshMap').click(function(event) {
-
-      $("#map1").show();
-      //displayMap(layerName,siteObject);
-      console.log(".refreshMap ");
+// WORK IN PROGRESS
+/*
+  $("#detaillist").text(""); // Clear prior results
+  // map1 = 
+  loadFromCSV('map1','map2', dp1, basemaps1, basemaps2, function(dp) { // Called on success
       
-      map1.invalidateSize(); // Force Leaflet map to reload
+      if (!overlays2["Railroads"]) {
+        overlays2["Railroads"] = dp.group; // Allows us to check if layer already added. Setting to db.group not currently user.
+        layerControl['map1'].addOverlay(baselayers["Rail"], "Railroads"); // Appends to existing layers
+      } 
   });
-});
+*/
 
-
-$('.sendfeedback').click(function(event) {
-  window.location = "../resources/input?showheader=" + param["showheader"];
-  event.stopPropagation();
-});
-$('.addlisting').click(function(event) {
-  window.location = "https://www.ams.usda.gov/services/local-regional/food-directories-update";
-  event.stopPropagation();
-});
-$('.pagebutton').click(function(event) {
-  console.log("Not yet implemented.");
-});
-$('.go_map').click(function(event) {
-  window.scrollTo({
+/*
+  // Return to top for mobile users on search.
+  if (document.body.clientWidth <= 500) {
+    window.scrollTo({
       top: 0,
       left: 0
     });
-});
-$('.go_list').click(function(event) {
-  window.scrollTo({
-      top: $('#list_main').offset().top - 95,
-      left: 0
-    });
-});
-$('.go_local').click(function(event) {
-  window.scrollTo({
-      top: $('#mapHolder').offset().top - 95,
-      left: 0
-    });
-  $("#sidemapCard").show(); // map2
-});
+*/
 
-// HEX
-function access(minlevel,alevel) {
-    var level = 0;
-    if (alevel) { level = parseInt(alevel) }
-    if (minlevel >= level) {
-        //consoleLog("TRUE minlevel " + minlevel + " level " + level);
-        return true;
-    } else {
-        //consoleLog("FALSE minlevel " + minlevel + " level " + level);
-        return false;
-    }
-}
-function removeFrontFolder(path) {
-    return("../.." + path);
-}
-function displayHexagonMenu(layerName,siteObject) {
-  var currentAccess = 0;
-  consoleLog("Display HEXAGON MENU");
-
-  $("#honeycombMenu").html(""); // Clear prior
-  $("#honeycombPanel").show();
-  var thelayers = siteObject.items;
-  //console.log(thelayers);
-  var sectionMenu = "";
-  var categoryMenu = "";
-  //var iconMenu = "";
-  var layer;
-  for(layer in thelayers) {
-
-        var menuaccess = 10; // no one
-        menuaccess = 0; //Temp
-        try { // For IE error. Might not be necessary.
-            if (typeof(siteObject.items[layer].menuaccess) === "undefined") {
-                menuaccess = 0;
-            } else {
-                menuaccess = siteObject.items[layer].menuaccess;
-            }
-        } catch(e) {
-            consoleLog("displayLayerCheckboxes: no menuaccess");
-        }
-        if (access(currentAccess,menuaccess)) {
-            if (siteObject.items[layer].menulevel == "1") {
-            //var layerTitleAndArrow = (thelayers[layer].navtitle ? thelayers[layer].navtitle : thelayers[layer].title);
-            var layerTitleAndArrow = thelayers[layer].section;
-                var icon = (thelayers[layer].icon ? thelayers[layer].icon : '<i class="material-icons">&#xE880;</i>');
-             if (thelayers[layer].item != "main" && thelayers[layer].section != "Admin" && thelayers[layer].title != "") {
-                // <h1 class='honeyTitle'>" + thelayers[layer].provider + "</h1>
-                sectionMenu += "<li class='hex'><a class='hexIn hash-changer' href='#" + thelayers[layer].item + "'><img src='" + removeFrontFolder(thelayers[layer].image) + "' alt='' /> <p class='honeySubtitle'>" + layerTitleAndArrow + "</p></a></li>";
-                }
-            }
-        }
-  }
-  $("#honeycombMenu").append("<ul id='hexGrid'>" + sectionMenu + "</ul>");
-  $("#honeycombPanelHolder").show();
-  //$("#iconMenu").append(iconMenu);
-    $("#honeyMenuHolder").show();
-}
-function displayBigThumbnails(layerName,siteObject) {
-    var currentAccess = 0;
-    $(".bigThumbMenu").html("");
-
-    $("#honeycombPanelHolder").show(); // Might have to alter when this occurs.
-    $("#honeycombPanel").show();
-    var thelayers = siteObject.items;
-    var sectionMenu = "";
-    var categoryMenu = "";
-    var iconMenu = "";
-    var bigThumbSection = layerName;
-    var layer;
-    for(layer in thelayers) {
-
-        var menuaccess = 10; // no one
-        try { // For IE error. Might not be necessary.
-            if (typeof(siteObject.items[layer].menuaccess) === "undefined") {
-                menuaccess = 0;
-            } else {
-                menuaccess = siteObject.items[layer].menuaccess;
-            }
-        } catch(e) {
-            consoleLog("displayLayerCheckboxes: no menuaccess");
-        }
-        
-        var directlink = getDirectLink(thelayers[layer].directlink, thelayers[layer].rootfolder, thelayers[layer].item);
-
-        if (bigThumbSection == "main") {
-            if (thelayers[layer].menulevel == "1") {
-                if (access(currentAccess,menuaccess)) {
-                    //if (siteObject.items[layer].section == bigThumbSection && siteObject.items[layer].showthumb != '0' && bigThumbSection.replace(" ","-").toLowerCase() != thelayers[layer].item) {
-                    
-                        var thumbTitle = ( thelayers[layer].thumbtitle ? thelayers[layer].thumbtitle : (thelayers[layer].section ? thelayers[layer].section : thelayers[layer].primarytitle));
-                        var thumbTitleSecondary = (thelayers[layer].thumbTitleSecondary ? thelayers[layer].thumbTitleSecondary : '&nbsp;');
-
-                        var icon = (thelayers[layer].icon ? thelayers[layer].icon : '<i class="material-icons">&#xE880;</i>');
-                           if (thelayers[layer].item != "main" && thelayers[layer].section != "Admin" && thelayers[layer].title != "") {
-                                // <h1 class='honeyTitle'>" + thelayers[layer].provider + "</h1>
-                                //var thumbTitle = thelayers[layer].title;
-                                var bkgdUrl = thelayers[layer].image;
-                                if (thelayers[layer].bigthumb) {
-                                    bkgdUrl = thelayers[layer].bigthumb;
-                                }
-                                bkgdUrl = removeFrontFolder(bkgdUrl);
-
-                                
-                                if (thelayers[layer].directlink) {
-                                    //hrefLink = "href='" + removeFrontFolder(thelayers[layer].directlink) + "'";
-                                }
-                                if (menuaccess==0) { // Quick hack until user-0 displays for currentAccess 1. In progress...
-                                    sectionMenu += "<li class='widthPercent user-" + menuaccess + "' style='displayX:none'><div class='bigThumbHolder'><div class='bigThumb' style='background-image:url(" + bkgdUrl + ");'><a href='" + directlink + "'><div class='bigThumbText'>" + thumbTitle + "<div class='bigThumbSecondary'>" + thumbTitleSecondary + "</div></div></a></div></div></li>";
-                                } else {
-                                    sectionMenu += "<li class='widthPercent user-" + menuaccess + "' style='display:none'><div class='bigThumbHolder'><div class='bigThumb' style='background-image:url(" + bkgdUrl + ");'><a href='" + directlink + "'><div class='bigThumbText'>" + thumbTitle + "<div class='bigThumbSecondary'>" + thumbTitleSecondary + "</div></div></a></div></div></li>";
-                                }
-                            }
-                    //}
-                }
-            }
-        } else {
-            if (access(currentAccess,menuaccess)) {
-                if (siteObject.items[layer].section == bigThumbSection && siteObject.items[layer].showthumb != '0' && bigThumbSection.replace(" ","-").toLowerCase() != thelayers[layer].item) {
-                    var thumbTitle = (thelayers[layer].navtitle ? thelayers[layer].navtitle : thelayers[layer].title);
-                    var thumbTitleSecondary = (thelayers[layer].thumbTitleSecondary ? thelayers[layer].thumbTitleSecondary : '&nbsp;');
-
-                    var icon = (thelayers[layer].icon ? thelayers[layer].icon : '<i class="material-icons">&#xE880;</i>');
-                    if (!siteObject.items[layer].bigThumbSection) { // Omit the section parent
-                       if (thelayers[layer].item != "main" && thelayers[layer].section != "Admin" && thelayers[layer].title != "") {
-                            // <h1 class='honeyTitle'>" + thelayers[layer].provider + "</h1>
-                            //var thumbTitle = thelayers[layer].title;
-                            var bkgdUrl = thelayers[layer].image;
-                            if (thelayers[layer].bigthumb) {
-                                bkgdUrl = thelayers[layer].bigthumb;
-                            }
-                            bkgdUrl = removeFrontFolder(bkgdUrl);
-
-                            //var hrefLink = "";
-                            if (thelayers[layer].directlink) {
-                                //hrefLink = "href='" + removeFrontFolder(thelayers[layer].directlink) + "'";
-                            }
-                            sectionMenu += "<li class='widthPercent user-" + menuaccess + "'><div class='bigThumbHolder'><div class='bigThumb' style='background-image:url(" + bkgdUrl + ");'><a href='" + directlink + "'><div class='bigThumbText'>" + thumbTitle + "<div class='bigThumbSecondary'>" + thumbTitleSecondary + "</div></div></a></div></div></li>";
-                        }
-                    }
-                }
-            }
-        }
-    }
-    //alert(sectionMenu);
-    $(".bigThumbMenu").append("<ul class='bigThumbUl'>" + sectionMenu + "</ul>");
-    //$("#honeycombMenu").append("<ul class='bigThumbUl'>" + sectionMenu + "</ul>");
-    
-    $("#iconMenu").append(iconMenu);
-    $("#honeyMenuHolder").show();
-
-    $(".thumbModule").append($("#honeycombPanelHolder")); // For GDX
-}
-function getDirectLink(directlink,rootfolder,layer) {
-    if (directlink) {
-        directlink = removeFrontFolder(directlink);
-    } else if (rootfolder) {
-        if (rootfolder.indexOf('/site/docs/') < 0) {
-            rootfolder = "/site/docs/" + rootfolder;
-        }
-        directlink = removeFrontFolder(rootfolder + "#" + layer);
-    } else {
-        directlink = removeFrontFolder("/site/docs/#" + layer);
-    }
-    return(directlink);
-}
-function initSiteObject(layerName) {
-
-    // Also make a .json file sample for Greenville
-    // https://github.com/codeforgreenville/leaflet-google-sheets-template
-    // https://data.openupstate.org/map-layers
-
-    var layerJson = "menu.json";
-
-    var siteObject = (function() {
-        var json = null;
-        $.ajax({
-            'type': 'GET',
-            'async': true,
-            'global': false,
-            'url': layerJson,
-            'jsonpCallback': 'callback',
-            'dataType': "jsonp",
-            'success': function (siteObject) {
-                consoleLog("json loaded within initSiteObject. location.hash: " + location.hash);
-                
-                // siteObjectFunctions(siteObject); // could add to keep simple here
-          
-                //displayBigThumbnails("main",siteObject);
-                //displayHexagonMenu("",siteObject);
-            },
-          error: function (req, status, err) {
-              consoleLog('Error fetching siteObject json: ', status, err);
-          }
-        });
-    })(); // end siteObject
-} // end initSiteObject
-
-initSiteObject("");
 
 </script>
 

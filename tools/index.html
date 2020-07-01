@@ -86,17 +86,11 @@ crossorigin=""></script>
       height:40px;
       margin:28px 10px 4px 50px
     }
+    .headerImage {
+      display:none;
+    }
     #hublist-padding {
       padding-right: 30px; /* Avoid including in map.css. Only used when fixed map resides to right of list. */
-    }
-    .topLinks {
-        z-index: 99999;
-        padding: 20px 20px 20px 50px;
-        font-size: 18px;
-    }
-    .topLinks a {
-        color: #777;
-        text-decoration: underline;
     }
     @media (max-width: 800px) {
       .padding-left {
@@ -171,7 +165,21 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
 
 <div id="allsections" class="slides">       
   <section id="intro" class="litePanel scrollable-slide">
-    <div class="content pageTopPadding">
+    <div class="content contentpadding">
+
+      <div class="topLinks">
+          <a href="../../io/">Overview</a> |
+          <a href="../../io/communities/">For Communities</a> |
+          <a href="../../io/coders/">For Coders & Designers</a> |
+          <a href="../../io/learn/">For Teachers and Students</a> | 
+          <a href="../../io/team/">Our Team</a>
+      </div>
+      <br>
+
+        <div class="rightside fullMobile" style="border:1px solid #aaa; padding:10px">
+          <a href="https://model.earth/community/challenge/"><img src="../img/overview/banner-1.png" style="width:270px;"></a>
+        </div>
+
         <b><span class="siteTitleShort"></span></b>
         <br>
         
@@ -231,21 +239,19 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
 
     <div>
 
-          Companies and communities are using the US Environmentally Extended Input-Output Model (USEEIO) to analyze economic and environmental impacts across all economic sectors 
-          for community planning, business development and environmental education. 
+          Companies and communities are using the <a href="https://www.epa.gov/land-research/us-environmentally-extended-input-output-useeio-models">US Environmentally Extended Input-Output (USEEIO) Models</a> to analyze economic and environmental impacts across all economic sectors 
+          for community planning, business development and environmental education using interactive interfaces like the <a href="https://www.epa.gov/smm/sustainable-materials-management-prioritization-tools">Sustainable Materials Management Prioritization Tools</a>. 
           The new online tools foster informed decisions while creating connections that turn waste streams into revenue streams to lower the cost of material input during production. 
-          <a href="../about/useeio">About the Tool</a>
           <br>
 
           <h2>Upcoming Events and Internships</h2>
-          In the Spring of 2020, Georgia communities will participate in our Life Cycle App Ideas Challenge to inspire and help set priorities. 
-          During the Summer of 2020, Georgia university students will receive paid internships to create modules with local and regional data. 
-          In the Fall of 2020, we'll expand on the new tools during the Code for America Sustainable Communities Web Challenge. 
+          During the summer of 2020, Georgia communities are contributing ideas to our Life Cycle App Ideas Challenge to inspire and help set priorities. 
+          Georgia Tech interns are updating modules for local and regional analysis. 
+          In the Fall of 2020, we'll expand on the new community tools during the Code for America <a href="../challenge">Sustainable Communities Web Challenge</a> which will provide $10,000 in awards. 
           <a href="../challenge" style="white-space: nowrap">Learn More and Register</a>.<br><br>
 
           <b>What's new:</b><br>
-
-          <a href="../challenge">Fall 2020 Sustainable Communities Web Challenge</a> - $10,000 in Awards<br>
+          <!--
           <a href="https://discourse.codeforamerica.org/t/index-of-covid-19-projects-in-the-network/715">Code for America Covid-19 Response Projects</a> - 
 
           <a href="https://statusboard.brigade.cloud/">City Status Board</a> - 
@@ -253,6 +259,7 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
           <br>
           
           <br>
+          -->
 
           <!--
           <a href="https://www.georgia.org/newsroom/press-releases/gov-kemp-calls-georgia-businesses-aid-critical-health-care-needs"> Manufacturers and distributors supplying the fight against COVID-19</a> - Georgia businesses are helping the state provide, produce, distribute, or store critical health care items needed to fight the spread of COVID-19.
@@ -264,10 +271,20 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
           <a href="https://sustainability.aboutamazon.com/carbon-footprint" target="_blank">Overview</a> / 
           <a href="https://d39w7f4ix9f5s9.cloudfront.net/a4/ad/b9eca67e4578b35e8f995c8b4f9c/amazon-carbon-methodology-september-2019.pdf" target="_blank">Details</a><br>
 
-          Microsoft's goal is 2030, followed by removing all their carbon emissions since 1975 by 2050. - <a href="https://www.microsoft.com/en-us/corporate-responsibility/sustainability" target="_blank">Learn More</a>
+          Microsoft's goal is 2030, followed by removing all their carbon emissions since 1975 by 2050. - <a href="https://blogs.microsoft.com/blog/2020/01/16/microsoft-will-be-carbon-negative-by-2030/" target="_blank">Learn More</a>
+          <!--
+            https://www.microsoft.com/en-us/corporate-responsibility/sustainability
+
+            Microsoft is building a “Planetary Computer” to 
+            aggregate environmental data from around the world 
+            and put it to work...
+            https://blogs.microsoft.com/blog/2020/04/15/a-healthy-society-requires-a-healthy-planet/ 
+          -->
+          <br><br>
+
+          <a href="../about/useeio">More about who's using the USEEIO modeling tool</a>
           <br><br>
           
-
       </div>
 
     </div>
@@ -277,7 +294,7 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
   <section id="objectives">
     <div class="content contentpadding">
 
-      <div style="font-size: 18px">
+      <div style="font-size:18px">
         <a href="https://www.epa.gov/smm/epa-sustainable-materials-management-program-strategic-plan-fiscal-years-2017-2022">
           <img src="../img/overview/smmstratplan.jpg" style="width:100%; max-width:180px; float:right; margin:0 0 30px 40px" class="fullMobile"></a>
 
@@ -316,10 +333,10 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
             <h2 style="font-size: 18px; margin-bottom:0px; font-weight: 600">Smart & Sustainable Movement of <span style="white-space: nowrap">Goods & Services</span></h2>
             
             <!--
-            <a href="../samples/feed" class="button">Add your data feeds</a>
+            <a href="../start/feed" class="button">Add your data feeds</a>
             -->
 
-            <input type="button" onclick="location.href='../samples/feed';" 
+            <input type="button" onclick="location.href='../start/feed';" 
             value="Add your data feeds" style="margin-top:20px; padding:10px" />
             <br><br>
 
@@ -381,10 +398,9 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
     <div class="content contentpadding">
       <h1>Statewide Input-Output Modeling</h1>
 
-      <a href="https://modelearth.github.io/eeio/charts/">View our new embeddable US EEIO charts - Get Involved!</a><br>
+      <a href="https://modelearth.github.io/io/charts/">View our new embeddable US EEIO charts - Get Involved!</a><br>
 
-      The screenshot below is from the EPA's Sustainable Materials Management Prioritization Tool Suite which uses the USEEIO model.<br>
-      To add clarity and speed, here's a <a href="../samples/dataset/">IO Module Starter</a> generated from a CSV file output from the USEEIO API. <a href="../about/useeio">About the Tool</a><br><br>
+      The screenshot below is from the EPA's new Sustainable Materials Management <a href="https://www.epa.gov/smm/sustainable-materials-management-prioritization-tools">Prioritization Tool Suite</a> which uses the USEEIO model. Here's an <a href="../start/dataset/">IO Module Starter</a> generated from a CSV file output from the USEEIO API.<br><br>
 
       <img src="../img/overview/heatmap.png" style="width:100%">
       <br><a href="../resources/USEEIO/">How is this chart generated?</a>
@@ -530,13 +546,15 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
   <section id="charts" class="litePanel contentTop padding">
     <div class="content contentpadding">
 
-      <h1>Sankey Charts of Material&nbsp;Flow</h1>
+      <h1>Material Flow - Sankey Charts</h1>
+      <a href="../start/charts">View Chart Starters</a><br><br>
 
-      <div style='float:left'>INFLOW</div>
-      <div style='float:right'>OUTFLOW</div>
-      <div style='text-align:center'><a href="../samples/charts">View Chart Starters</a></div>
+      <div style='float:left'>SUPPLIERS (Input)</div>
+      <div style='float:right;text-align:right'>BUYERS (Output)</div>
+      <div style='text-align:center'>LOCAL INDUSTRIES<br>
+      </div>
 
-      <div style="clear:both;margin-top:12px"></div>
+      <div style="clear:both;margin-top:32px"></div>
 
       <div id="observablehq-fe91f8f3"></div>
       <script type="module">
@@ -564,14 +582,14 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
     <div class="content contentpadding">
       <div id="readmeDiv"></div><br>
 
-      <iframe class="block-map-directory cf" id="map_directory" src="../samples/maps/counties/counties.html" style="width:100%;height:500px"></iframe>
+      <iframe class="block-map-directory cf" id="map_directory" src="../start/maps/counties/counties.html" style="width:100%;height:500px"></iframe>
     </div>
   </section>
 
 
 
-  <section id="local">
-    <div class="content contentpadding">
+  <section id="local" style="margin-top:0px" class="litePanel">
+    <div class="content contentpadding" style="margin-top:0px">
       <div>
         <h1 style="margin-bottom:0px">Recycling Processors (B2B)</h1>
         <a href="https://data.georgia.org/#recycling" target="_parent">Additional Maps</a> - Landfills, Inert Waste, Transfer Stations
@@ -611,8 +629,8 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
 
       In addition, census data from <a href="https://uszipcode.readthedocs.io/01-Tutorial/index.html">uszipcode datasets</a>, will be combined with establishment and employment counts from the <a href="../industries">Complete ZIP Code Industry Detail Files</a> to model impacts using the <a href="https://github.com/usepa/useeio_api/wiki/Use-the-API">USEEIO API</a>.<br><br>
 
-      <a href="../samples/feed">Publish your Inventory and Wishlist Data</a>
-      
+      <a href="../start/feed">Publish your Inventory and Wishlist Data</a>
+      <br><br>
     </div>
   </section>
 
@@ -632,7 +650,7 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
     }
   </style>
   <div id="footerBox" class="padding" style="clear:both; background: #eee; z-index: 2000; overflow: auto">
-    <div class="content contentpadding">
+    <div class="content contentpadding" style="padding-top:0px;">
       <div id="partners" style="float:left; margin-right:40px">
         <h2>Partners</h2>
 
@@ -649,7 +667,7 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
 
           <a href="https://GitHub.com/modelearth/community/">Edit on GitHub</a> - Contribute to our code and datasets.<br>
 
-          <a href="../about/team/">Meet Our Team</a> - Contributors from US EPA, GDEcD and Georgia Tech.<br>
+          <a href="../../io/team/">Meet Our Team</a> - Contributors from US EPA, GDEcD and Georgia Tech.<br>
 
           <a href="https://waze.com/carpool" target="waze_carpool">Waze Carpool</a> - Find carpool riders and drivers near you.<br>
         </div>
@@ -709,11 +727,14 @@ Port of Bainbridge,30.902867,-84.606259,Liquid/Dry Bulk,1321 Spring Creek Road,B
     dp2.dataTitle = "Smart Data Projects";
     dp2.markerType = "google";
     dp2.listLocation = false;
+
+    loadMap1(dp2);
+
+    /*
     loadFromCSV('map1','map2', dp2, function(results) {
-      //alert('layer')
       layerControl['map1'].addOverlay(baselayers["Rail"], "Railroads"); // Appends to existing layers
     });
-
+    */
 </script>
 
 <script>

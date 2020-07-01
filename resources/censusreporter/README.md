@@ -1,18 +1,39 @@
 
-# Venv and Django with Postgres
+# CensusReporter
 
-GOAL: Since Wazimap provides a Python 3 fork of Census Reporter, we're using it to modernize Census Reporter. 
-Wazimap is used in Africa and India.  
+Project 1: Document steps for deploying static portion of Wazimap to a website. Host on Github or another server.   
 
-Beforehand, contact CensusReporter.org to see if they will upgrade to our Python 3.0 version with environmentally-enabled IO widgets added.  
+
+Since the Wazimap fork provides a Python 3 version of Census Reporter with international usage, we'll use it as a starting point for updating the US version of Census Reporter.  
+
+Work in our [Wazimap Fork of Census Reporter]( https://github.com/modelearth/wazimap) - a Python 3.0 version of [Census Reporter](https://censusreporter.org/profiles/86000US30313-30313/).  
+Wazimap is maintained by [OpenUp](https://openup.org.za/) and in used in Africa and India.  
+
+**Future Projects:**  
+2. Add ability to select country to toggle to the [US API](https://github.com/censusreporter/census-api) from [Census Report repo](https://github.com/censusreporter/censusreporter).  
+3. Add [Environmentally-Enabled IO Charts](../../../io/charts/)  
+4. Merge work into original Census Reporter repo   
+
+
+## Virtual Environment
+
+Venv and Django with Postgres
+
 
 ### Mac Users
 
-[First, make Python3 default for Mac](virtualenv-troubleshooting.html)     
-- Install a user copy of Python3 using bash, then change your default from Python2 to Python3.   
+[You may need to make Python3 the default for Mac](virtualenv-troubleshooting.html) - Install a user copy of Python3 using bash, then change your default from Python2 to Python3.   
 
 
 You may want to use [virtualenv](virtualenv.html) - option for use with Python 2 virtual environment.     
+
+
+To see the full range of options, run the following command:  
+
+	python -m venv -h
+
+More here: [Venv command (pythonise.com)](https://pythonise.com/categories/python/python-virtual-environments-with-the-venv-command)
+
 
 ## Wazimap Census Reporter (Setup)
 
@@ -49,9 +70,15 @@ Then activate. Your commands will then start with (env1):
 
 	source ~/Documents/env1/bin/activate
 
+Command above differs for bash/zsh. Note that \~/Documents/ is not included here:  
+
+See: https://docs.python.org/3/library/venv.html  
+
 Upgrade pip to 20.0.2+ since 19.0.3 is system default:
 
 	pip install --upgrade pip
+
+## Django
 
 Installs Django 3.0.3
 
@@ -77,7 +104,9 @@ Had one error out of many successful. Appears to have built from mpc-1.1.0.tar.g
 	Warning: Bottle installation failed: building from source.
 	==> Downloading https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz
 
-You'll need to have PostgreSQL installed first above.
+You'll need to have PostgreSQL installed first above.  
+
+**Question:** Can we modify so it's not necessary to install PostgreSQL, and only use the API?  
 
 	pip install wazimap
 
@@ -134,11 +163,4 @@ When you're done with the virtual environment
 	deactivate
 
 
-To see the full range of options, run the following command:  
-
-	python -m venv -h
-
-More here: [Venv command (pythonise.com)](https://pythonise.com/categories/python/python-virtual-environments-with-the-venv-command)
-
-
-[Wazimap Census Reporter]( https://github.com/modelearth/wazimap) is maintained by [OpenUp](https://openup.org.za/), formerly Code for South Africa. 
+<br><br>

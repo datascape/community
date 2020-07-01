@@ -25,35 +25,15 @@
 <script>
   loadMarkdown("README.md", "readmeDiv", "_parent");
 
-  //loadMarkdown("../../eeio/README.md", "useDiv", "_parent");
-  loadMarkdown("https://modelearth.github.io/eeio/README.md", "useDiv", "_parent");
-
   //loadMarkdown("https://raw.githubusercontent.com/wiki/USEPA/useeio-widgets/Home.md", "useDiv", "_parent");
   ////loadMarkdown("https://raw.githubusercontent.com/wiki/USEPA/useeio-widgets/Use.md", "useDiv", "_parent");
 
+  loadMarkdown("https://modelearth.github.io/community/impact/harmonized-system/README.md", "ioDiv", "_parent");
   loadMarkdown("../../io/Overview.md", "georgiaDiv", "_parent");
-  loadMarkdown("../impact/harmonized-system/README.md", "ioDiv", "_parent");
 </script>
 
 <style>
-.pagecard {
-    clear:both;
-    overflow: auto;
 
-    background: #fff;
-    min-height: 50px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-    border-radius: 4px;
-    margin-bottom: 30px;
-    padding: 20px;
-}
-@media (max-width: 1200px) {
-    .pagecard {
-        padding:40px;
-        margin-right:20px;
-    }
-}
 #fullcolumn {
     background: #fafafa;
 }
@@ -111,21 +91,9 @@
 #logoholderside {
     display: none !important;
 }
-.leftLogo {
-    float:left;
-    margin:20px;
-    margin-right:40px;
-}
-@media (max-width: 800px) {
-    .leftLogo {
-        float:none;
-        margin-right:20px;
-        max-width: 150px;
-    }
-}
 </style>
 
-<div style="position:relative; background:#aaa"><!-- #dae8eb -->
+<div class="earth" style="display:none;position:relative; background:#aaa"><!-- #dae8eb -->
 
     <div class="local" style="float:right; padding:20px; clear:both; display:none">
 
@@ -178,49 +146,41 @@
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-<div class="content contentpadding" style="overflow:auto; padding-right:20px">
+<div class="content contentpadding" style="overflow:auto;">
 
     <div style="margin-bottom:20px">
     </div>
 
     <div class="pagecard">
-
-        <div class="leftLogo">
-            <img src="../img/logo/epa.png" style="width:100%; max-width:200px">
-        </div>
-        <div style="overflow:auto">
-            <div id="showImpactWidget" class="localonly button">Explore Environmental Impacts</div>
-            <div id="readmeDiv"></div>
-        </div>
-    </div>
-
-    <div class="pagecard">
-
-        <div class="leftLogo">
-            <img src="../img/logo/github.png" style="width:100%; max-width:200px">
-        </div>
-        <div style="overflow:auto">
-            <div id="useDiv"></div>
+        <div class="cardstyle">
+            <div class="leftLogo">
+                <img src="../img/logo/epa.png" style="width:100%; max-width:200px">
+            </div>
+            <div style="overflow:auto">
+                <div id="readmeDiv"></div>
+            </div>
         </div>
     </div>
 
     <div class="pagecard">
-
-        <div class="leftLogo">
-            <a href="https://codeforall.org/members" target="_blank"><img src="../img/logo/code-for-all.png" style="width:100%; max-width:200px"></a>
-        </div>
-        <div style="overflow:auto">
-            <div id="ioDiv"></div>
+        <div class="cardstyle">
+            <div class="leftLogo">
+                <a href="https://codeforall.org/members" target="_blank"><img src="../img/logo/code-for-all.png" style="width:100%; max-width:200px"></a>
+            </div>
+            <div style="overflow:auto">
+                <div id="ioDiv"></div>
+            </div>
         </div>
     </div>
     
     <div class="pagecard">
-
-        <div class="leftLogo">
-            <img src="../img/logo/georgia.png" style="width:100%; max-width:200px">
-        </div>
-        <div style="overflow:auto">
-            <div id="georgiaDiv"></div>
+        <div class="cardstyle">
+            <div class="leftLogo">
+                <img src="../img/logo/georgia.png" style="width:100%; max-width:200px">
+            </div>
+            <div style="overflow:auto">
+                <div id="georgiaDiv"></div>
+            </div>
         </div>
     </div>
 

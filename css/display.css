@@ -44,12 +44,7 @@ body {
 	padding: 20px;
 	margin-bottom: 20px;
 }
-.filterPanel {
-	overflow: auto;
-	padding: 20px 0 12px 24px;
-	border-topX: 1px solid #ddd;
-}
-.filterPanel_background {
+.filterPanel_backgroundXXX {
 	position: absolute;
 	top:0px;
 	left:0px;
@@ -62,11 +57,8 @@ body {
 	margin-top:60px;
 }
 @media (max-width: 600px) {
-	.filterPanel_background {
+	.filterPanel_backgroundXXX {
 		height:140px;
-	}
-	#map1 {
-		margin-top:120px;
 	}
 }
 .filterPanel_fixed {
@@ -88,10 +80,12 @@ body {
 
 #topPanel {
 	overflow:auto;
+	overflow:hidden;
 	clear:both;
 	z-index: 200;
-	margin-top: 24px;
 	padding-bottom: 20px;
+	position: absolute;
+	height:400px;
 }
 @media (max-width: 800px) {
 	#topPanel {
@@ -165,9 +159,8 @@ body {
 	padding: 7px 8px 7px 8px;
 }
 .catList > div {
-	padding: 7px 8px 7px 8px;
+	padding: 7px 12px 7px 18px;
 	border: solid 1px #fff;
-	
 }
 .catList > div:hover {
 	background: #f3f3f3;

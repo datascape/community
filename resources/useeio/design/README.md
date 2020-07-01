@@ -27,7 +27,7 @@ Users could be provided with a means to add their own datasets with storage in t
 
 ## Impact Bar Charts
 
-The <a href="https://modelearth.github.io/eeio/charts">chart widgets</a> are driven by hash values to allow for the separation of modules that interact with other widgets on the same page. Possible bar chart updates include: 
+The <a href="https://modelearth.github.io/io/charts">chart widgets</a> are driven by hash values to allow for the separation of modules that interact with other widgets on the same page. Possible bar chart updates include: 
 
 1. Display the mid-size indicator name on charts. - DONE
 2. Use only half the page for the text and horizontal bars. - DONE
@@ -60,8 +60,8 @@ Example of loading from [CSV rather than JSON](https://model.earth/tw-charts/reg
 
 Display sectors within subcategories and full names.  Example:
 
-[Sample dataset](https://model.earth/community/samples/dataset)  
-[Sortable heatmap](https://model.earth/community/samples/dataset/sortable.html)  
+[Sample dataset](https://model.earth/community/start/dataset)  
+[Sortable heatmap](https://model.earth/community/start/dataset/sortable.html)  
 
 Display all the industries (under expandable parent categories) rather than just 10 to 50 at a time.  
 
