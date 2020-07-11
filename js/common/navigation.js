@@ -1,20 +1,6 @@
-// Call from end of page. Every browser then waits for doc ready, without using JQuery.
-//loadMarkdown("README.md", "readmeDiv", "_parent");
-
-
-// Resides in common.js
-//function loadMarkdown(pagePath, divID, target) {
-//  d3.text(pagePath).then(function(data) {
-//    var converter = new showdown.Converter({tables:true}),
-//    html = converter.makeHtml(data);
-//    document.getElementById(divID).innerHTML = html;
-//  });
-//}
-
 if (window.location.protocol != 'https:' && location.host.indexOf('localhost') < 0) {
 	location.href = location.href.replace("http://", "https://");
 }
-
 var imageUrl, imageUrlSide;
 $(document).ready(function(){
 
@@ -30,7 +16,6 @@ $(document).ready(function(){
 	      }).appendTo("body");
 	  }
 
-
 	// Get the levels below root
  	var foldercount = (location.pathname.split('/').length - 1); // - (location.pathname[location.pathname.length - 1] == '/' ? 1 : 0) // Removed because ending with slash or filename does not effect levels. Increased -1 to -2.
  	foldercount = foldercount - 2;
@@ -42,8 +27,9 @@ $(document).ready(function(){
  	for (var i = 0; i < climbcount; i++) {
  		climbpath += "../";
  	}
-
-
+ 	if (climbpath == "") {
+ 		climbpath += "./"; // Eliminates ? portion of URL
+ 	}
  	if (param["showheader"] != "false") {
  		if (param["showhero"] != "false") {
 	 		if(location.host.indexOf('model.georgia') >= 0) { 
@@ -51,8 +37,7 @@ $(document).ready(function(){
 		 	}
 		 }
 	 	$("body").wrapInner( "<div id='fullcolumn'></div>"); // Creates space for sidecolumn
-	 	if(document.getElementById("sidecolumn") == null)
-		{
+	 	if(document.getElementById("sidecolumn") == null) {
 	 		$("body").prepend( "<div id='sidecolumn' class='hideprint'></div>\r" );
 	 	}
 	 	$("body").prepend( "<div id='header' class='hideprint'></div>\r" );
@@ -83,19 +68,19 @@ $(document).ready(function(){
 		 		//imageUrlSide = climbpath + "../community/img/logo/georgia-icon-rect.png";
 	 			//$('#logoholder').addClass('logoholder-state');
 		 		//$('#headerLocTitleHolder').addClass('headerLocTitleHolder-state');
-		 		
 
 		 		$('#logoholder').html("<a href='https://georgia.org'><img src='" + climbpath + "../community/img/logo/georgia_usa_gray.png' style='width:130px;padding-top:4px'></a>");
 		 		//$('.georgia').show(); // For nav menu
 		 		$('.georgia').css('display', 'inline');
-		 	} else if(location.host.indexOf('neighborhood') >= 0) {
+		 	} else if(1==2 && location.host.indexOf('neighborhood') >= 0) {
+		 		// Something here causes distorted logo live on neighborhood
 		 		$(".siteTitleShort").text("Model Building");
-		 		$('#logoholder').html("<a href='/'><img style='height: 25px;margin: 30px 10px 4px 10px;' src='" + climbpath + "../localsite/img/logo/neighborhood.png' style='width:140px;padding-top:4px'></a>");
+		 		$('#logoholder').html("<a href='/'><img style='height: 25px;margin: 30px 10px 4px 10px;' src='" + climbpath + "../localsite/img/logo/favicon.png' style='width:140px;padding-top:4px'></a>");
 		 		$('.headerbar').css('height', '80px');
 		 		$('.headerOffsetOne').css('height', '80px');
 		 		$('.headerbarheight').css('height', '80px');
 		 		//$('.neighborhood').show(); // Not yet implemented
-		 		$('.neighborhood').css('display', 'block'); // Not yet implemented
+		 		$('.neighborhood').css('display', 'block');
 		 	} else {
 		 		$(".siteTitleShort").text("Model Earth");
 		 		imageUrl = climbpath + "../community/img/logo/favicon.png"; // model earth
@@ -119,9 +104,23 @@ $(document).ready(function(){
 			 	$('.mock-up').css('display', 'block');
 		 	}
 
+		 	if(location.host.indexOf('neighborhood') >= 0) {
+		 		// Since deactivated above due to conflict with header logo in app.
+		 		$('.neighborhood').css('display', 'block');
+		 	}
 		 	if (param.titleArray) {
 		 		$('#headerSiteTitle').html("<span style='float:left'><a href='" + climbpath + "' style='text-decoration:none'><span style='color: #777;'>" + param.titleArray[0] + "</span><span style='color:#bbb;margin-left:1px'>" + param.titleArray[1] + "</span></a></span>");
 		 	}
+		 	if (param.favicon) {
+		 		imageUrl = climbpath + ".." + param.favicon;
+		 		//$('#logoholderside').css('width', '40px');
+		 		//$('#logoholderside').css('height', '40px');
+		 		$('.logoholder-modelearth').css('width', '40px');
+		 		$('.logoholder-modelearth').css('height', '40px');
+		 		$('.logoholder-modelearth').css('margin-top', '7px');
+		 		$('.logoholder-modelearth').css('margin-right', '20px');
+		 	}
+
 		 	$('#logoholder').css('background-image', 'url(' + imageUrl + ')');
 			$('#logoholder').css('background-repeat', 'no-repeat');
 
@@ -152,7 +151,6 @@ $(document).ready(function(){
 				if($("#menuHolder").css('display') !== 'none') {
 	            	$("#menuHolder").hide(); // Since menu motion may freeze when going to another page.
 
-
 	            	if (!$(event.target).parents("#menuHolder").length) {
 	            		//event.preventDefault(); // Using requires double click
 	            	}
@@ -160,12 +158,14 @@ $(document).ready(function(){
 			});
 
 		});
-
-		$("body").append( "<div id='footer' class='hideprint'></div>\r" );
+		if(document.getElementById("footer") == null) {
+			$("body").append( "<div id='footer' class='hideprint'></div>\r" );
+		}
 		let footerFile = climbpath + "../community/footer.html";
 		if (param.footer) footerFile = param.footer;
 		$("#footer").load(footerFile, function( response, status, xhr ) {
-
+			let pageFolder = getPageFolder(footerFile);
+			makeLinksRelative("footer",climbpath,pageFolder);
 		});
 	} else {
 		$(".filterPanel").addClass("filterPanel_fixed");
@@ -343,4 +343,30 @@ $(document).ready(function(){
 	
 });
 
+function makeLinksRelative(divID,climbpath,pageFolder) {
+	  $("#" + divID + " a[href]").each(function() {
 
+      //if (pagePath.indexOf('../') >= 0) { // If .md file is not in the current directory
+      //$("#" + divID + " a[href]").each(function() {
+      if($(this).attr("href").toLowerCase().indexOf("http") < 0){ // Relative links only        
+          $(this).attr("href", climbpath + $(this).attr('href'));
+      } else if (!/^http/.test($(this).attr("href"))) { // Also not Relative link
+          alert("Adjust: " + $(this).attr('href'))
+          $(this).attr("href", pageFolder + $(this).attr('href'));
+      }
+    })
+}
+function getPageFolder(pagePath) {
+  let pageFolder = pagePath;
+  if (pageFolder.lastIndexOf('?') > 0) { // Incase slash reside in parameters
+    pageFolder = pageFolder.substring(0, pageFolder.lastIndexOf('?'));
+  }
+  // If there is a period after the last slash, remove the filename.
+  if (pageFolder.lastIndexOf('.') > pageFolder.lastIndexOf('/')) {
+    pageFolder = pageFolder.substring(0, pageFolder.lastIndexOf('/')) + "/";
+  }
+  if (pageFolder == "/") {
+    pageFolder = "";
+  }
+  return pageFolder;
+}

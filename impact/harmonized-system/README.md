@@ -1,9 +1,15 @@
 # Harmonized System (HS) Codes
 
-International Harmonized System (HS) Codes reside in the [impact mockup](../) - Categories are visible when clicking "Lookup" in the upper left only when viewing on localhost. 
-([Localhost setup](../../start/markdown/)) 
+International Harmonized System (HS) Codes are available by clicking "Categories" on the [info page](../../info/?show=exporter) when show=mockup.  
 
-Potential Project: Add a crosswalk from NAICS to HS.   
+<!--
+Categories are visible when clicking "Lookup" in the upper left only when viewing on localhost.  
+-->
+
+Project: Add a crosswalk from NAICS to HS to activate selection by HS Code.  
+
+Here's a sample of [links that filter by HS Category](https://www.georgia.org/international-trade-export).
+
 
 #### International Input-Output Datasets   
 
@@ -15,5 +21,3 @@ Co-Operation and Development](https://www.oecd.org/sti/ind/measuring-trade-in-va
 
 1. [World Input-Output Database (WOID)](http://www.wiod.org/otherdb)  
 
-
-[Code for All countries](https://codeforall.org/members) | [More Project Ideas](../../)

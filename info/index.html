@@ -16,7 +16,7 @@
 -->
 
 <script src="../js/d3/d3.v5.min.js"></script>
-<script type="text/javascript" src="../js/common/showdown.min.js"></script>
+<script type="text/javascript" src="../../localsite/js/showdown.min.js"></script>
 
 <!-- PRODUCTION -->
 <link rel="stylesheet" type="text/css" href="../../io/charts/useeio/widgets.css">
@@ -33,10 +33,17 @@
 <!-- After USEEIO to alter css -->
 <!--
 <link rel="stylesheet" href="../css/community.css" />
+<link type="text/css" href="../../localsite/css/base.css" rel="stylesheet" />
 -->
 
 <style>
 /* Temp overrides */
+
+.includedContent {
+  max-width: 1300px;
+  margin:0 auto;
+
+}
 .mock-up {
 	displayX: inline-block !important;
 }
@@ -163,6 +170,16 @@ h2 {
 		display: none;
 	}
 }
+.picklist {
+	margin-bottom:8px;
+}
+.industry_filter_settings {
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin-bottom: 8px;
+	display: none;
+}
 </style>
   
 
@@ -224,7 +241,7 @@ function go(go) {
 <!-- two columns -->
 <div class="pageColumns">
 <div class="mainColumn mainColumn1" style="font-size: 15px; padding-right: 30px">
-	<a onClick="go({'go':'', 'view':'mosaic', 'count':'10'}); return false;" href="./#view=mosaic">Overview</a> | 
+	<a onClick="go({'go':'', 'view':'mosaic', 'count':'10', 'regiontitle':'', 'geo':''}); return false;" href="./#view=mosaic">Overview</a> | 
 	<a onClick="go({'go':'bioeconomy', 'catsort':'estab', 'view':'mosaic', 'count':'10'}); return false;" href="./#go=bioeconomy&view=mosaic">Bioeconomy</a> | 
 	<a href="../../io/charts/">About Widgets</a> |
 	<a onClick="go({'go':'dataprep', 'view':'mosaic', 'geo':'', 'regiontitle':'', 'count':'10', 'catsort':'estab'}); return false;" href="./#go=bioeconomy&view=mosaic">Data Prep</a>
@@ -259,12 +276,6 @@ function go(go) {
 
 <div class="mainColumn mainColumn2">
 	<div class="io">
-
-		<div style="float:right;display:none" class="local">
-			<span class="material-icons" style="font-size:30px;color:#777">
-			settings
-			</span>
-		</div>
 		<div>
 			<h2 class="regiontitle">Loading Industries...</h2>
 			<h4 class="regionsubtitle" style="font-size:16px;color:#555;"></h4>
@@ -278,6 +289,11 @@ function go(go) {
 		-->
 
 		<div id="detail_selection">
+			<div id="show_industry_settings" style="float:right;cursor:pointer" onclick="$('.industry_filter_settings').toggle();">
+				<span class="material-icons" style="font-size:24px;color:#777">
+				settings
+				</span>
+			</div>
 			<select id="catsort" class="picklist" onchange="updateHash({'catsort':this.value});refreshWidgets();">
 	          <option value="payann" selected>By Annual Payroll</option>
 	          <option value="emp" >By Employee Count</option>
@@ -290,8 +306,21 @@ function go(go) {
 	          <!--option value="4">NAICS Industry - 5 digits</option-->
 	          <option value="6" selected>National Code - 6 digits</option>
 	        </select>
+	        <div style="clear:both;margin-bottom:2px"></div>
+
+	        <div class="industry_filter_settings">
+		        <div class="state-view">
+		        	Choose a county or region above to view filter settings.
+		        </div>
+		        <div class="county-view" style="display:none">
+			        <select id="catmethod" class="picklist" onchange="updateHash({'catmethod':this.value});refreshWidgets();">
+			          <option value="1" selected>Estimate using unpublished payrolls</option>
+			          <option value="2" >Estimate using total state payroll</option>
+			          <option value="0" >Leave unpublished values blank</option>
+			        </select>
+			    </div>
+			</div>
 		</div>
-		<br>
 
 		<!-- Sector List Format -->
 		<style>
@@ -566,19 +595,37 @@ Source: https://bl.ocks.org/luluwuluying/ace3699c70a2e3e7a2bb
 To do: Multicolumn sort (but allow for fixed first column)
 https://rawgit.com/joequery/Stupid-Table-Plugin/master/examples/multicolumn-sort.html
 -->
-<div class="content contentpadding">
-	<h2>Industry Comparison</h2>
-	<div id="includedContent"></div>
-</div>
 
-<script> 
-    $(function(){
-    	function showBubbleChart() {
-      		$("#includedContent").load("bubble.html");
-      	}
-      	showBubbleChart(); // To be called by menu in header.
-    });
-</script> 
+<link rel="stylesheet" type="text/css" href="../start/charts/bubble/css/style.css"/>
+<div class="includedContent">
+	<h2>Industry Comparison</h2>
+	<div id="title1"></div>
+	    <div id="subtitle"></div>
+	    <text id="equation"></text>
+	    <div id="graph-wrapper">
+
+	      <div id="graph-wrapper-x">
+	        <text>X-Axis</text>
+	        <select id="graph-picklist-x" class="graph-picklist">
+	        </select>
+	      </div>
+	      <div id="graph-wrapper-y">
+	        <text>Y-Axis</text>
+	        <select id="graph-picklist-y" class="graph-picklist">
+	        </select>
+	      </div>
+	      <div id="graph-wrapper-z">
+	        <text>Bubble-Size</text>
+	        <select id="graph-picklist-z" class="graph-picklist">
+	        </select>
+	      </div>
+	    </div>
+	    <br>
+	    Inspired by <a href="https://public.tableau.com/profile/john.sherwood#!/vizhome/USEEIOAnalysis/Dashboard1">John Sherwood's Bubble Chart</a>
+	    <br>
+	  </body>
+  </div>
+  <script type="text/javascript" src="js/bubble.js"></script>
 
 <br><br><br>
 <br><br><br>
@@ -1015,6 +1062,9 @@ $(document).ready(function () {
 	}
 	if (param.catsize) {
 		$("#catsize").val(param.catsize);
+	}
+	if (param.catmethod) {
+		$("#catmethod").val(param.catmethod);
 	}
 	if (param.indicators) {
 		$("#indicators").val(param.indicators);

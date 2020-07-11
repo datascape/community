@@ -12,6 +12,10 @@
 <script type="text/javascript" src="js/common/common.js?sidecolumn=community/nav.html"></script>
 <script type="text/javascript" src="js/common/navigation.js"></script>
 <link rel="stylesheet" href="css/community.css" />
+<link type="text/css" href="../../localsite/css/base.css" rel="stylesheet" />
+
+<link rel="stylesheet" id="ivan-fonts-css" href="https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CRaleway%3A300%2C400%2C700&amp;subset=latin" type="text/css" media="all">
+
 </head>
 
 <!--
@@ -24,6 +28,9 @@
 </script>
 
 <style>
+.headerImage{
+    display: none;
+}
 #fullcolumn {
     background: #fafafa;
 }
@@ -75,29 +82,29 @@
 </style>
 
 <div style="background-color: #dae8eb; text-align: center; overflow: auto; padding:0px; border:0px">
-    <div style="max-width:1400px; max-height:350px">
-        <a href="challenge/">
-          <img src="img/overview/banner-1.png" style="max-height:350px">
-          <img src="img/overview/banner-2.png" class="hideMobile"  style="max-height:350px">
-        </a>
+    <div style="max-width:1400px; max-height:300px">
+        <div style="display: inline-block;">
+        <a href="https://codeforamerica.org"><img src="img/logo/code-for-america-and-earth.png" style="float:left; max-height:120px; margin:50px 100px 20px 0"></a>
+        <a href="challenge/"><img src="img/overview/banner-2.png" class="hideMobile" style="float:left; max-height:300px;"></a>
+        </div>
     </div>
 </div>
 
+<style>
+  #sidecolumnContent {
+    position: static !important;
+  }
+</style>
+<div id="sidecolumn"></div>
+
 <div id="rightcolumn" style="float:right; max-width: 400px;">
-    <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/EPA"></a> 
+    <a class="twitter-timeline" data-tweet-limit="2" href="https://twitter.com/EPA"></a> 
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
 <div class="content contentpadding litePanel" style="overflow:auto;">
 
-    <div class="topLinks">
-          <a href="../../io/">Overview</a> |
-          <a href="../../io/communities/">For Communities</a> |
-          <a href="../../io/coders/">For Coders & Designers</a> |
-          <a href="../../io/learn/">For Teachers and Students</a> | 
-          <a href="../../io/team/">Our Team</a>
-      </div>
-      <br>
+    
       
     <div style="clear:both; overflow: auto;">
       <div id="readmeDiv"></div>

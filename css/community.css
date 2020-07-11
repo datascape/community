@@ -33,35 +33,6 @@ svg{max-width:none;} /* Fix for embedding material icon map points in Drupal */
   .showMobileWide {display:inline-block;}
 }
 
-/* Source: https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap */
-/* vietnamese */
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Nunito Sans Regular'), local('NunitoSans-Regular'), url(https://fonts.gstatic.com/s/nunitosans/v5/pe0qMImSLYBIv1o4X1M8cceyI9tAcVwob5A.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Nunito Sans Regular'), local('NunitoSans-Regular'), url(https://fonts.gstatic.com/s/nunitosans/v5/pe0qMImSLYBIv1o4X1M8ccezI9tAcVwob5A.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Nunito Sans Regular'), local('NunitoSans-Regular'), url(https://fonts.gstatic.com/s/nunitosans/v5/pe0qMImSLYBIv1o4X1M8cce9I9tAcVwo.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -88,9 +59,6 @@ html a {
   text-decoration:none;
   color: #0366d6;
 }
-html a:hover {
-  text-decoration:underline;
-}
 h1,h2,h3,h4 {
   line-height: 1.5;
 }
@@ -109,15 +77,29 @@ h1 {
 h2 {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
+  margin-top: 30px;
 }
 h2 a:visited {
   color: #0366d6;
 }
-h2 {
-  margin-top: 30px;
-}
 h3 {
   margin-top: 20px;
+  margin-bottom: 10px;
+}
+h4 {
+  margin-top: 15px;
+  font-size: 17px;
+  font-weight: 100;
+}
+/* integrate with above, also in localsite */
+h2, h3, h4 {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: normal;
+    color: rgb(77, 82, 89);
+    color: rgb(66, 72, 79);
+}
+h2 {
+  font-weight: 600;
 }
 @media (max-width: 500px) {
   h1 {
@@ -131,6 +113,9 @@ hr {
 }
 select {
   height: 30px; /* temp here */
+}
+.caption {
+  font-size: 11px;
 }
 .io input[type="text"], .io input[type="search"], .io select {
   /* Using 34px for header and 30px for page elements */
@@ -211,8 +196,6 @@ select {
 .content {
   max-width: 1140px;
   margin:0 auto;
-  padding-leftX: 60px;
-  padding-rightX: 60px;
   font-size: 15px;
   line-height: 1.5;
   position: relative;
@@ -251,61 +234,6 @@ select {
 }
 .topLinks a {
   white-space: nowrap;
-}
-.rightside, .floatright {
-  float:right;
-  max-width:400px;
-  margin-left:30px;
-  margin-bottom:30px;
-  font-size: 18px;
-}
-@media (max-width: 1120px) {
-  .rightside {
-    max-width:auto;
-    margin-left:0px;
-    margin-bottom:30px;
-    float:none;
-  }
-}
-@media (max-width: 600px) {
-  .floatright {
-    max-width:auto;
-    margin-left:0px;
-    margin-bottom:30px;
-    float:none;
-  }
-  .fullMobile {
-    float:none;
-    width:100% !important;
-    max-width:100% !important;
-    margin-left:0px !important;
-  }
-}
-
-.litePanel {
-    background-color: #fff;
-    overflow:auto;
-}
-.darkPanel {
-    background-color: #ddd;
-}
-mark {
-  padding:4px 8px 4px 8px;
-  background-color: #ffc;
-}
-code {
-  background-color: #eee;
-  padding: 2px  5px;
-}
-content .js, pre code { /* Prevents .js from impacting js class within Drupal body tag */
-  background-color: #eee;
-  padding:15px;
-  border-left: 4px solid #137AD1;
-  margin-bottom: 22px;
-  display: block;
-  unicode-bidi: embed;
-  font-family: monospace;
-  /* white-space: pre-wrap; */ /* Causes Drupal to have large empty div's at top */
 }
 
 .regularText {
@@ -671,124 +599,6 @@ iframe {
 
 
 
-/* HEADER */
-.headerLogo {
-  height:22px;
-  margin:7px 10px 4px 0px
-}
-.upperIcons > div {
-  border-left:1px solid #ddd;
-  height:100px;
-  padding:32px;
-  padding-left:37px;
-}
-.upperIcons > div:hover {
-  cursor: pointer;
-}
-#menuHolder {
-  height:100%;
-  position:fixed;
-  right:0px;
-
-  margin-leftX:-10px;
-  overflow: auto;
-  background: #fff;
-
-  width:250px;
-  margin-right:-250px;
-  -webkit-transition-duration: 0.3s;
-    -moz-transition-duration: 0.3s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-
-    box-sizing: border-box;
-    z-index: 9999;
-}
-#menuTop {
-  margin-left:20px;
-}
-#menuNav {
-  margin-top:20px;
-}
-#menuNav a {
-  display: block;
-  padding-left: 40px !important;
-  padding-top: 15px !important;
-  min-height: 50px;
-  box-sizing: border-box;
-}
-/*
-#menuNav a:hover {
-  background-color: #ddd;
-}
-*/
-#menuNav a {
-  font-size:16px;
-  font-weight: 500;
-  color: #ccc;
-}
-#menuNav a:hover {
-  background-color: #000;
-}
-
-
-@media (max-width: 600px) {
-  #menuNav a {
-    font-size:20px;
-  }
-}
-#menuHolder a {
-  padding: 10px;
-  text-decoration: none;
-}
-.hideMenu {
-  margin-top:15px;
-  margin-right:-20px;
-  cursor:pointer;
-  border: 2px solid #AEAEAE;
-  border-radius: 30px;
-  font-size: 32px;
-  font-weight: 100;
-  display: inline-block;
-  line-height: 0px;
-  padding: 11px 3px;
-  width: 27px;
-  position: relative;
-}
-.hideMenu:hover {
-  color:#fff;
-  border-color: #fff;
-}
-.hideMenuInner {
-  position:absolute;
-  top:3px;
-  left:4px;
-  color:#555;
-  display: none;
-  font-size: 20px;
-  display: inline-block;
-  line-height: 17px;
-}
-.hideMenuInner:hover {
-  color:#fff;
-}
-.hideMenuX:after {
-  position: absolute;
-  top: 10px;
-  left: 2px;
-  color:#aaa;
-  align-content: center; /* no effect, delete */
-  content: "×";
-}
-/* @media handheld { */
-@media only screen and (max-width: 479px) { /* Since Lato font not available on Android */
-  .hideMenu:after {
-      top: 12px;
-      left: 4px;
-  }
-}
-/* END HEADER */
-
 
 /* DARK */
 /*
@@ -828,4 +638,12 @@ h1 {
   .hideprint {
     display:none;
   }
+}
+
+#footer {
+  position: relative;
+  background-color: #cdc;
+  clear:both;
+  z-index: 1000;
+  padding-bottom:25px;
 }

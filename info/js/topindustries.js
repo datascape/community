@@ -15,6 +15,15 @@ var promises = [
     d3.tsv("data/usa/GA/industries_state13_naics4_state_api.tsv"),
     d3.tsv("data/usa/GA/industries_state13_naics6_state_api.tsv"),
     d3.tsv("data/usa/GA/GAcounties.csv"),
+    d3.tsv("data/usa/GA/industries_state13_naics2_est1.tsv"),
+    d3.tsv("data/usa/GA/industries_state13_naics4_est1.tsv"),
+    d3.tsv("data/usa/GA/industries_state13_naics6_est1.tsv"),
+    //d3.tsv("data/usa/GA/industries_state13_naics2_est2.tsv"),
+    //d3.tsv("data/usa/GA/industries_state13_naics4_est2.tsv"),
+    //d3.tsv("data/usa/GA/industries_state13_naics6_est2.tsv"),
+    d3.tsv("data/usa/GA/industries_state13_naics2_est3.tsv"),
+    d3.tsv("data/usa/GA/industries_state13_naics4_est3.tsv"),
+    d3.tsv("data/usa/GA/industries_state13_naics6_est3.tsv"),
 ]
 Promise.all(promises).then(ready);
 
@@ -23,8 +32,40 @@ function ready(values) {
     let params = loadParams(location.search,location.hash);
     let lastParams = {};
     let dataObject={};
-    let industryData = {
-        'ActualRate': formatIndustryData(values[d3.select("#catsize").node().value/2]),
+    let industryData ={}
+    if(d3.select("#catmethod").node().value==0){
+        industryData = {
+            'ActualRate': formatIndustryData(values[d3.select("#catsize").node().value/2]),
+        }
+    }else if(d3.select("#catmethod").node().value==1){
+        if (d3.select("#catsize").node().value==2){
+            industryData = {
+                'ActualRate': formatIndustryData(values[12]),
+            }
+        }else if(d3.select("#catsize").node().value==4){
+            industryData = {
+                'ActualRate': formatIndustryData(values[13]),
+            }
+        }else if(d3.select("#catsize").node().value==6){
+            industryData = {
+                'ActualRate': formatIndustryData(values[14]),
+            }
+        }
+    
+    }else if(d3.select("#catmethod").node().value==2){
+        if (d3.select("#catsize").node().value==2){
+            industryData = {
+                'ActualRate': formatIndustryData(values[18]),
+            }
+        }else if(d3.select("#catsize").node().value==4){
+            industryData = {
+                'ActualRate': formatIndustryData(values[19]),
+            }
+        }else if(d3.select("#catsize").node().value==6){
+            industryData = {
+                'ActualRate': formatIndustryData(values[20]),
+            }
+        }
     }
     dataObject.industryData = industryData;
 
@@ -96,7 +137,10 @@ function ready(values) {
     $(document).ready(function() {
         //code for what happens when you choose the state and county from drop down
         d3.selectAll(".picklist").on("change",function(){
+            
             renderIndustryChart(dataObject,values,params);
+            
+            
         });
         
         document.getElementById("clearButton").addEventListener("click", function(){
@@ -146,11 +190,55 @@ function ready(values) {
 
 
 function renderIndustryChart(dataObject,values,params) {
-    dataObject.industryData= {
-        'ActualRate': formatIndustryData(values[d3.select("#catsize").node().value/2]),
-        //'ActualRate': formatIndustryData($("#catsize").value/2),
-    }
 
+    if(d3.select("#catmethod").node().value==0){
+        industryData = {
+            'ActualRate': formatIndustryData(values[d3.select("#catsize").node().value/2]),
+        }
+    }else if(d3.select("#catmethod").node().value==1){
+        if (d3.select("#catsize").node().value==2){
+            industryData = {
+                'ActualRate': formatIndustryData(values[12]),
+            }
+        }else if(d3.select("#catsize").node().value==4){
+            industryData = {
+                'ActualRate': formatIndustryData(values[13]),
+            }
+        }else if(d3.select("#catsize").node().value==6){
+            industryData = {
+                'ActualRate': formatIndustryData(values[14]),
+            }
+        }
+    }else if(d3.select("#catmethod").node().value==2){
+        if (d3.select("#catsize").node().value==2){
+            industryData = {
+                'ActualRate': formatIndustryData(values[15]),
+            }
+        }else if(d3.select("#catsize").node().value==4){
+            industryData = {
+                'ActualRate': formatIndustryData(values[16]),
+            }
+        }else if(d3.select("#catsize").node().value==6){
+            industryData = {
+                'ActualRate': formatIndustryData(values[17]),
+            }
+        }
+    }else if(d3.select("#catmethod").node().value==3){
+        if (d3.select("#catsize").node().value==2){
+            industryData = {
+                'ActualRate': formatIndustryData(values[18]),
+            }
+        }else if(d3.select("#catsize").node().value==4){
+            industryData = {
+                'ActualRate': formatIndustryData(values[19]),
+            }
+        }else if(d3.select("#catsize").node().value==6){
+            industryData = {
+                'ActualRate': formatIndustryData(values[20]),
+            }
+        }
+    }
+    dataObject.industryData=industryData;
     if (d3.select("#catsize").node().value==2){
         industryDataState = {
             'ActualRate': formatIndustryData(values[5])
@@ -198,7 +286,7 @@ function renderIndustryChart(dataObject,values,params) {
         fips = "state";
     }
 
-    topRatesInFips(dataObject, dataObject.industryNames, fips, 20, d3.select("#catsort"),params)
+    geoChanged(dataObject);
         
 }
 
@@ -223,6 +311,15 @@ function geoChanged(dataObject,params){
     } else {
         fips = "state";
     }
+    if (fips == "state") {
+        $(".county-view").hide();
+        $(".state-view").show();
+        $(".industry_filter_settings").hide(); // temp
+    } else {
+        $(".state-view").hide();
+        $(".county-view").show();
+        $(".industry_filter_settings").show(); // temp
+    }
     topRatesInFips(dataObject, dataObject.industryNames, fips, 20, d3.select("#catsort"),params)
 }
 
@@ -245,7 +342,7 @@ function formatIndustryData(rawData) {
     var industryByType = {}
 
     subsetKeys = ['emp', 'payann', 'estab', 'NAICS2012_TTL','GEO_TTL','state','COUNTY','relevant_naics']
-
+    if (rawData) {
     for (var i = 0; i<rawData.length; i++){
 
         entry = rawData[i]
@@ -257,6 +354,7 @@ function formatIndustryData(rawData) {
             industryByType[entry.relevant_naics] = {}
             industryByType[entry.relevant_naics][entry.id] = parseSubsetValues(entry, subsetKeys)
         }
+    }
     }
     return industryByType
 }
@@ -716,6 +814,7 @@ function topRatesInFips(dataSet, dataNames, fips, howMany, whichVal,params){
             for(var i=0; i<fipslen; i++){
                 var filteredData = consdata.filter(function(d) {
                     if(d["id"]==fips[i]){
+                        $(".regiontitle").text("Industries within "+fipslen+" counties");
                         /*
                         if(i==fipslen-1){
                             document.getElementById("industryheader").innerHTML=document.getElementById("industryheader").innerHTML+'<font size="3">'+d["county"]+'</font>'
@@ -755,9 +854,3 @@ function topRatesInFips(dataSet, dataNames, fips, howMany, whichVal,params){
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value)
 }
-
-
-
-
-
-
